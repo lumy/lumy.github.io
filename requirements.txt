@@ -1,3 +1,0 @@
-typogrify
-pelican
-markdown
