@@ -3,7 +3,7 @@ slug: phoenixfireconvention
 Tags: juggling
 Date: 2019-11-11
 Category: Juggling
-lang: en
-translation: false
+lang: fr
+#translation: true
 
-Under Construction
+La construisance

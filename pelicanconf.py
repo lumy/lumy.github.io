@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'lumy'
-SITENAME = 'Lumy\'s blog'
+#SITENAME = 'Lumy\'s blog'
 
 SITEURL = '' # http://blog.lumy.me'
 PATH='content'
@@ -29,8 +29,19 @@ THEME = "pelican-themes/brownstone"
 
 PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = [
-    "jinja2content"
+    "jinja2content",
+    "i18n_subsites"
 ]
+I18N_SUBSITES = {
+    'en': {
+        'SITENAME': 'Lumy\'s blog',
+        'THEME_STATIC_PATHS': ["themes/",]
+    },
+    'fr': {
+        'SITENAME': 'Journal de Lumy',
+        'THEME_STATIC_PATHS': ["themes/",]
+    }
+}
 
 JINJA2CONTENT_TEMPLATES="content"
 
@@ -70,3 +81,11 @@ DEFAULT_PAGINATION = 10
 RELATIVE_URLS = False
 
 DELETE_OUTPUT_DIRECTORY = True
+
+def extract_trans(article, lang, url):
+    for trans in article.translations:
+        if trans.lang == lang:
+            return trans.url
+        return url
+
+JINJA_FILTERS = {'extract_trans': extract_trans}

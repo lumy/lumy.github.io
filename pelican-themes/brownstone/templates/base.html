@@ -16,7 +16,7 @@ Released   : 20100928
 <meta name="description" content="" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>{% block title %}{{ SITENAME }}{%endblock%}</title>
-<link href="{{ SITEURL }}/theme/css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="/theme/css/style.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="{{ SITEURL }}/{{ FEED }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" />
 {% if FEED_RSS %}
 <link href="{{ SITEURL }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
@@ -38,6 +38,8 @@ Released   : 20100928
 						<ul>
 							<li {% if output_file == "index.html" %}class="current_page_item"{% endif %}><a href="{{ SITEURL }}/">Home</a></li>
 							<li {% if output_file == "archives.html" %}class="current_page_item"{% endif %}><a href="{{ SITEURL }}/archives.html">Archives </a></li>
+
+							
 							{% if DISPLAY_PAGES_ON_MENU %}
                 {% for page in pages %}
                   <li {% if page.title in output_file %}class="current_page_item"{% endif %}><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
