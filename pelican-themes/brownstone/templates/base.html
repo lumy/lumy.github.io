@@ -28,7 +28,7 @@ Released   : 20100928
 		<div id="page-bgtop">
 			<div id="page-bgbtm">
 				{% block content %}
-                                {% endblock %}
+        {% endblock %}
 				<div id="sidebar">
 					<div id="logo">
 						<h1><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
@@ -36,7 +36,7 @@ Released   : 20100928
 					</div>
 					<div id="menu">
 						<ul>
-							<li {% if output_file == "index.html" %}class="current_page_item"{% endif %}><a href="{{ SITEURL }}">Home</a></li>
+							<li {% if output_file == "index.html" %}class="current_page_item"{% endif %}><a href="{{ SITEURL }}/">Home</a></li>
 							<li {% if output_file == "archives.html" %}class="current_page_item"{% endif %}><a href="{{ SITEURL }}/archives.html">Archives </a></li>
 							{% if DISPLAY_PAGES_ON_MENU %}
                 {% for page in pages %}
