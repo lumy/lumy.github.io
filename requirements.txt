@@ -1,0 +1,3 @@
+typogrify
+pelican
+markdown
