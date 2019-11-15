@@ -1,6 +1,27 @@
 PY?=python3
 PELICAN?=pelican
+PELICANTHEME?=pelican-themes
 PELICANOPTS=
+THEMES-LIST=notmyidea-cms-fr \
+	pelican-theme-jesuislibre \
+	pelican-cait \
+	pelican-bootstrap3-lovers \
+	bootstrap2 \
+	bootstrap2-dark \
+	brownstone \
+	pelican-twitchy \
+	pelican-hyde \
+	voidy-bootstrap \
+	notebook \
+	Responsive-Pelican \
+	pelican-blueidea \
+	sneakyidea \
+	pelican-chameleon \
+	html5-dopetrope \
+	pelican-simplegrey \
+	plumage \
+	bluegrasshopper-theme \
+	nmnlist
 
 BASEDIR=$(CURDIR)
 INPUTDIR=$(BASEDIR)/content
@@ -42,6 +63,9 @@ help:
 
 html:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
+
+themes:
+	$(foreach var,$(THEMES-LIST),$(PELICANTHEME) --install pelican-themes/$(var) --verbose;)
 
 clean:
 	[ ! -d $(OUTPUTDIR) ] || rm -rf $(OUTPUTDIR)
