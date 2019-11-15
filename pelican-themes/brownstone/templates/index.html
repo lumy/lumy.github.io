@@ -4,9 +4,9 @@
                         {% if articles %}
                         {% for article in articles %}        
                             {% if loop.index == 1 %}
-				<div id="content">
+<div id="content">
 					<div class="post">
-						<h2 class="title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
+						<h2 class="title"><a href="{{ SITEURL }}/{{ article.url }}">Test {{ article.title }}</a></h2>
 						<p class="meta"><span class="date">Le {{ article.date.locale_date }} </span><span class="posted">Par <a href="#">{{ article.author }}</a></span><span>&nbsp; | Catégorie : <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a></span></p>
 					<p class="meta">Tags : {% for tag in article.tags %}
 <span><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a> / </span>

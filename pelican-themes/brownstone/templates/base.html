@@ -31,18 +31,18 @@ Released   : 20100928
                                 {% endblock %}
 				<div id="sidebar">
 					<div id="logo">
-						<h1><a href="{{ SITEURL }}">{{ SITENAME }}</a></h1>
+						<h1><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
 						{% if SITESUBTITLE %}<p>{{ SITESUBTITLE }}</p>{% endif %}
 					</div>
 					<div id="menu">
 						<ul>
-							<li {% if page_name == "index" %}class="current_page_item"{% endif %}><a href="{{ SITEURL }}">Home</a></li>
-							<li {% if page_name == "archives" %}class="current_page_item"{% endif %}><a href="{{ SITEURL }}/archives.html">Archives</a></li>
+							<li {% if output_file == "index.html" %}class="current_page_item"{% endif %}><a href="{{ SITEURL }}">Home</a></li>
+							<li {% if output_file == "archives.html" %}class="current_page_item"{% endif %}><a href="{{ SITEURL }}/archives.html">Archives </a></li>
 							{% if DISPLAY_PAGES_ON_MENU %}
-                                                        {% for page in pages %}
-                                                            <li {% if page_name == page_title %}class="current_page_item"{% endif %}><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
-                                                        {% endfor %}
-                                                        {% endif %}
+                {% for page in pages %}
+                  <li {% if page.title in output_file %}class="current_page_item"{% endif %}><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+              {% endif %}
 						</ul>
 					</div>
 					<ul>
@@ -56,7 +56,7 @@ Released   : 20100928
 						</li>
 						{% if LINKS %}
 						<li>
-							<h2>Blogroll</h2>
+							<h2>More</h2>
 							<ul>
 							{% for name, link in LINKS %}
                                                             <li><a href="{{ link }}">{{ name }}</a></li>
@@ -68,24 +68,24 @@ Released   : 20100928
                                                 <li>
                                                         <h2>Social</h2>
                                                         <ul>
-                                                            <li><a href="{{ SITEURL }}/{{ FEED }}" rel="alternate">Flux Atom</a></li>
-                                                            {% if FEED_RSS %}
-                                                            <li><a href="{{ SITEURL }}/{{ FEED_RSS }}" rel="alternate">Flux Rss</a></li>
-                                                            {% endif %}
+                                                            <!-- <li><a href="{{ SITEURL }}/{{ FEED }}" rel="alternate">Flux Atom</a></li> -->
+                                                            <!-- {% if FEED_RSS %} -->
+                                                            <!-- <li><a href="{{ SITEURL }}/{{ FEED_RSS }}" rel="alternate">Flux Rss</a></li> -->
+                                                            <!-- {% endif %} -->
                                                         {% for name, link in SOCIAL %}
                                                             <li><a href="{{ link }}">{{ name }}</a></li>
                                                         {% endfor %}
                                                         </ul>
                                                 </li><!-- /.social -->
                                                 {% endif %}
-						<li>
-						        <h2>Tags</h2>
-						        <ul>
-						        {% for tag, articles in tags %}
-                                                                <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
-                                                        {% endfor %}
-						        </ul>
-						</li>
+						<!-- <li> -->
+						<!--         <h2>Tags</h2> -->
+						<!--         <ul> -->
+						<!--         {% for tag, articles in tags %} -->
+            <!--                                                     <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li> -->
+            <!--                                             {% endfor %} -->
+						<!--         </ul> -->
+						<!-- </li> -->
 						
 						
 					</ul>
