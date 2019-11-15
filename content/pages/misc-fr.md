@@ -1,7 +1,7 @@
 Title: Misc
 URL: index/misc
 save_as: index/misc.html
-lang: en
+lang: fr
 
 [a link relative to category](/misc)
 test_landing
