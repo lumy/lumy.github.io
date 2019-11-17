@@ -60,7 +60,6 @@ def add_libravatar (generator, metadata):
         ## Add URL to the article's metadata
         metadata ['author_libravatar'] = url
         generator.context ['author_libravatar'] = url
-        print(url)
 
 def register ():
     """Register the Libravatar plugin with Pelican"""
