@@ -16,27 +16,30 @@ Released   : 20100928
 <meta name="description" content="" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>{% block title %}{{ SITENAME }}{%endblock%}</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">	
 <link href="/theme/css/style.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="{{ SITEURL }}/{{ FEED }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" />
 {% if FEED_RSS %}
 <link href="{{ SITEURL }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
 {% endif %}
+
 </head>
 <body>
 <div id="wrapper">
-	<div id="page">
+	<div id="page" class="rounded">
 		<div id="page-bgtop">
 			<div id="page-bgbtm">
 				{% block content %}
         {% endblock %}
-				<div id="sidebar">
-					<div id="logo">
-						<h1><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
-						{% if SITESUBTITLE %}<p>{{ SITESUBTITLE }}</p>{% endif %}
-					</div>
+				<div id="logo">
+					<h1><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
+					{% if SITESUBTITLE %}<p>{{ SITESUBTITLE }}</p>{% endif %}
+				</div>
+				<div id="sidebar" class="rounded">
 					{% if author_libravatar  %}
 					<div align="center" style="height: 160px;">
-						<img src="{{ author_libravatar }}">
+						<img style="margin-top: 1%;" class="rounded" src="{{ author_libravatar }}">
 					</div>
 					{% endif %}
 					<div id="menu">
@@ -54,49 +57,57 @@ Released   : 20100928
 					</div>
 					<ul>
 						<li>
-							<h2>Catégories</h2>
-
-							<div class="dropdown">
+							<div class="dropdown" style="margin-left: 20px;">
 								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Dropdown button
+									Catégories
 								</button>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									<a class="dropdown-item" href="#">Action</a>
-									<a class="dropdown-item" href="#">Another action</a>
-									<a class="dropdown-item" href="#">Something else here</a>
+									{% for cat, null in categories %}
+                    <a {% if cat == category %}class="active dropdown-item"{% else %}class="dropdown-item"{% endif %} href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>
+									{% endfor %}
 								</div>
 							</div>
-							
-							<ul>
-							{% for cat, null in categories %}
-								 <li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
-							{% endfor %}
-							</ul>
 						</li>
+						{% if extra_siteurls %}
+						<li>
+							<div class="dropdown" style="margin-left: 20px;">
+								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Languages
+								</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									{% for lang, url in extra_siteurls.items() %}
+                    <a class="dropdown-item" href="{{ (lang,output_file)|generate_url_lang }}">{{ lang|lookup_lang_name }}</a>
+									{% endfor %}
+								</div>
+						  </div>
+						</li>
+						{% endif %}
 						{% if LINKS %}
 						<li>
 							<h2>More</h2>
 							<ul>
 							{% for name, link in LINKS %}
-                                                            <li><a href="{{ link }}">{{ name }}</a></li>
-                                                        {% endfor %}
+              <li>
+								<a class="text-light btn btn-info rounded" href="{{ link }}">{{ name }}</a>
+							</li>
+              {% endfor %}
 							</ul>
 						</li>
 						{% endif %}
-						{% if SOCIAL %}
-                                                <li>
-                                                        <h2>Social</h2>
-                                                        <ul>
-                                                            <!-- <li><a href="{{ SITEURL }}/{{ FEED }}" rel="alternate">Flux Atom</a></li> -->
-                                                            <!-- {% if FEED_RSS %} -->
-                                                            <!-- <li><a href="{{ SITEURL }}/{{ FEED_RSS }}" rel="alternate">Flux Rss</a></li> -->
-                                                            <!-- {% endif %} -->
-                                                        {% for name, link in SOCIAL %}
-                                                            <li><a href="{{ link }}">{{ name }}</a></li>
-                                                        {% endfor %}
-                                                        </ul>
-                                                </li><!-- /.social -->
-                                                {% endif %}
+
+						{% if MSOCIAL %}
+            <!-- <li> -->
+              <h2>Social</h2>
+  						{% for name, link, cls in MSOCIAL %}
+							<!-- <ul> -->
+							<a class="btn btn-info rounded"  href="{{ link }}">
+								<i class="{{ cls }}"></i>
+							</a>
+							<!-- </ul> -->
+              {% endfor %}
+            <!-- </li> -->
+            {% endif %}
+
 						<!-- <li> -->
 						<!--         <h2>Tags</h2> -->
 						<!--         <ul> -->
@@ -108,7 +119,7 @@ Released   : 20100928
 						
 						
 					</ul>
-				</div>
+					</div>
 				<!-- end #sidebar -->
 				<div style="clear: both;">&nbsp;</div>
 			</div>
@@ -122,6 +133,10 @@ Released   : 20100928
 </p>
 </div>
 {% include 'analytics.html' %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="/theme/js/all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- end #footer -->
 </body>
 </html>
