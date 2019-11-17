@@ -1,5 +1,5 @@
 Title: contact
-lang: en
+lang: fr
 url: contact
 save_as: contact.html
 

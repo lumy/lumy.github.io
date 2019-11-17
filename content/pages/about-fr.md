@@ -1,6 +1,6 @@
 Title: about
-lang: en
+lang: fr
 url: about
 save_as: about.html
 
-Test
+Test Francais

@@ -1,7 +1,7 @@
-Title: Misc
-URL: index/misc
-save_as: index/misc.html
+Title: misc
+URL: misc/index
+save_as: misc/index.html
 lang: en
 
-[a link relative to category](/misc)
+[a link relative to category](/misc/category)
 test_landing

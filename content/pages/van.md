@@ -1,7 +1,7 @@
-Title: Van
-URL: index/van
-save_as: index/van.html
+Title: van
+URL: van/
+save_as: van/index.html
 lang: en
 
-[a link relative to category](/van)
+[a link relative to category](/van/category)
 test_landing

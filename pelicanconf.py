@@ -30,8 +30,14 @@ THEME = "pelican-themes/brownstone"
 PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = [
     "jinja2content",
-    "i18n_subsites"
+    "i18n_subsites",
+    "libravatar",
 ]
+
+LIBRAVATAR_AUTHOR_EMAIL="lumy@lumy.me"
+LIBRAVATAR_SIZE=220
+TEST_LUMY="TEST"
+
 I18N_SUBSITES = {
     'en': {
         'SITENAME': 'Lumy\'s blog',

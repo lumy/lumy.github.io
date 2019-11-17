@@ -30,14 +30,15 @@ def add_libravatar (generator, metadata):
     """Article generator connector for the Libravatar plugin"""
     missing = generator.settings.get ('LIBRAVATAR_MISSING')
     size = generator.settings.get ('LIBRAVATAR_SIZE')
-
-    ## Check the presence of the Email header
-    if 'email' not in metadata.keys ():
+    default_email = generator.settings.get ('LIBRAVATAR_AUTHOR_EMAIL', None)
+    if default_email:
+      metadata ['email'] = default_email
+    else: ## Check the presence of the Email header
+      if 'email' not in metadata.keys ():
         try:
-            metadata ['email'] = generator.settings.get ('AUTHOR_EMAIL')
+          metadata ['email'] = generator.settings.get ('AUTHOR_EMAIL')
         except:
-            pass
-
+          pass
     ## Add the Libravatar URL
     if metadata ['email']:
 
@@ -56,10 +57,10 @@ def add_libravatar (generator, metadata):
                     url = url + '&'
             if size:
                 url = url + 's=' + str (size)
-
         ## Add URL to the article's metadata
         metadata ['author_libravatar'] = url
-
+        generator.context ['author_libravatar'] = url
+        print(url)
 
 def register ():
     """Register the Libravatar plugin with Pelican"""
