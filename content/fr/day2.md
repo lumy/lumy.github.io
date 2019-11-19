@@ -1,8 +1,8 @@
-Title: day2
+Title: jour 2
 slug: day2
 Tags: van
 Date: 2019-11-11
 Category: Van
-lang: en
+lang: fr
 
-Under Construction
+La construisance

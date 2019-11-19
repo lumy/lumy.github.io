@@ -14,28 +14,31 @@ CACHE_CONTENT = False
 CATEGORY_URL = '{slug}/category'
 CATEGORY_SAVE_AS = '{slug}/category.html'
 
-ARTICLE_URL = '{lang}/{category}/{slug}/'
+ARTICLE_URL = '{category}/{slug}/'
 ARTICLE_SAVE_AS = '{category}/{slug}/index.html'
 
 TIMEZONE = 'Europe/Paris'
 
 DEFAULT_LANG = 'en'
+JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
 
 # Other themes
 # plumage
 # pelican-themes -l
-THEME = "pelican-themes/brownstone"
+THEME = "pelican-themes/pelican-bootstrap3"
+#"pelican-themes/pelican-blue"
 
 PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = [
-    "jinja2content",
+    # "jinja2content",
     "libravatar",
-    "pelicanfly",
+    # "pelicanfly",
     "i18n_subsites",
 ]
 
 LIBRAVATAR_AUTHOR_EMAIL="lumy@lumy.me"
-LIBRAVATAR_SIZE=220
+LIBRAVATAR_SIZE=80
+MENUITEMS=()
 
 I18N_SUBSITES = {
     'fr': {
@@ -51,6 +54,8 @@ DISPLAY_PAGES_ON_MENU = True
 
 # Whether to display categories on the menu of the template.
 DISPLAY_CATEGORIES_ON_MENU = True
+
+DISPLAY_TAGS_ON_MENU = False
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
