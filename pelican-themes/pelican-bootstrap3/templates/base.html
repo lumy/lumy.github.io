@@ -118,7 +118,7 @@
 
 <div class="navbar {% if BOOTSTRAP_NAVBAR_INVERSE %}navbar-inverse{% else %}navbar-default{% endif %} navbar-fixed-top" style="background-color: gainsboro;" role="navigation">
     <div class="container{% if BOOTSTRAP_FLUID %}-fluid{% endif %}">
-        <div class="navbar-header">
+      <div class="navbar-header">
             {% if MENUITEMS or (pages and DISPLAY_PAGES_ON_MENU) or (categories and DISPLAY_CATEGORIES_ON_MENU) %}
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -128,7 +128,7 @@
             </button>
             {% endif %}
             <a href="{{ SITEURL }}/" class="navbar-brand">
-                {% if SITELOGO %}<img class="img-responsive pull-left gap-right" src="{{ SITEURL }}/{{ SITELOGO }}" width="{{ SITELOGO_SIZE }}"/> {% endif %}
+                {% if author_libravatar %}<img class="img-responsive pull-left gap-right" src="{{ author_libravatar }}" width="{{ SITELOGO_SIZE }}"/> {% endif %}
                 {% if not HIDE_SITENAME %}{{ SITENAME }}{% endif %}
             </a>
         </div>
@@ -150,30 +150,19 @@
                       {% endfor %}
                 {% endif %}
                 {% if DISPLAY_CATEGORIES_ON_MENU %}
-						<li>
-							<div class="dropdown" style="margin-top:10px;">
-								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Catégories
-								</button>
-									<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										{% for cat, null in categories %}
-                    <li><a {% if cat == category %}class="active dropdown-item"{% else %}class="dropdown-item"{% endif %} href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
-										{% endfor %}
-									</ul>
-							</div>
-						</li>
-                    <!-- {% for cat, null in categories %} -->
-                    <!--     <li {% if cat == category %}class="active"{% endif %}> -->
-                    <!--         <a href="{{ SITEURL }}/{{ cat.url }}">{{ cat | capitalize }}</a> -->
-                    <!--     </li> -->
-                    <!-- {% endfor %} -->
-										{% endif %}
-					<!-- 															{% if author_libravatar  %} -->
-					<!-- <div align="center" style="height: 160px;"> -->
-					<!-- 	<img style="margin-top: 1%;" class="rounded" src="{{ author_libravatar }}"> -->
-					<!-- </div> -->
-					<!-- {% endif %} -->
-
+								<li>
+									<div class="dropdown" style="margin-top:10px;">
+										<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											Catégories
+										</button>
+										<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											{% for cat, null in categories %}
+											<li><a {% if cat == category %}class="active dropdown-item"{% else %}class="dropdown-item"{% endif %} href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+											{% endfor %}
+										</ul>
+									</div>
+								</li>
+  							{% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
             {% if 'tipue_search' in PLUGINS %}
