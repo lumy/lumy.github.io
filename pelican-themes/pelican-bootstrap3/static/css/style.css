@@ -2,6 +2,11 @@ body {
     padding-top: 70px;
 }
 
+img, div.figure {
+		max-width: 100%;
+		height: auto;
+}
+
 #sidebar .list-group, #sidebar .list-group-item {
     background-color: transparent;
 }
