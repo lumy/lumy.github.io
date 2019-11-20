@@ -3,9 +3,19 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'lumy'
-SITENAME = 'Lumy\'s Hobbies'
 
-SITEURL = '' # http://blog.lumy.me'
+# BLOG_AUTHORS = {
+#   'Lumy': {
+#     'description':"""A little mor about me""",
+#     'short_description': """short version""",
+#     'image': "https://cdn.libravatar.org/avatar/aba70c130633876489a562cc6f686e42?s=220",
+#     'links': (("Lumy's website", 'https://www.lumy.me'),
+#               ("Lumy's cv", 'http://cv.lumy.me/'))
+#   }
+# }
+SITENAME = 'Lumy\'s Hobbies'
+SITESUBTITLE = "My roads"
+
 PATH='content'
 
 LOAD_CONTENT_CACHE = False
@@ -22,68 +32,31 @@ TIMEZONE = 'Europe/Paris'
 DEFAULT_LANG = 'en'
 JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
 
-ABOUT_ME={
-  "en":"a little about me",
-  "fr":"un peu plus sur moi",
-}
-
-# Other themes
-# plumage
-# pelican-themes -l
-THEME = "pelican-themes/pelican-bootstrap3"
-#"pelican-themes/pelican-blue"
+THEME='clean-blog'
 
 PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = [
-    # "jinja2content",
-    "libravatar",
-    # "pelicanfly",
-    "i18n_subsites",
-  "image_process.pelican_image_process",
-  "better_figures_and_images",
+  # "libravatar",
+  "i18n_subsites",
 ]
 
-RESPONSIVE_IMAGE = True
-FIGURE_NUMBERS = True
-
-LIBRAVATAR_AUTHOR_EMAIL="lumy@lumy.me"
-LIBRAVATAR_SIZE=220
-SITELOGO_SIZE=220
-MENUITEMS=()
-AVATAR=True
+# LIBRAVATAR_AUTHOR_EMAIL="lumy@lumy.me"
+# LIBRAVATAR_SIZE=220
 
 I18N_SUBSITES = {
     'fr': {
-        'SITENAME': 'Lumy\'s Hobbies',
+        'SITENAME': 'Les passions de Lumy',
         'THEME_STATIC_PATHS': ["themes/",],
     }
 }
 
-IMAGE_PROCESS = {
-  # 'crisp': {'type': 'responsive-image',
-  #           'srcset': [('1x', ["scale_in 800 600 True"]),
-  #                      ('2x', ["scale_in 1600 1200 True"]),
-  #                      ('4x', ["scale_in 3200 2400 True"]),
-  #           ],
-  #           'default': '1x',
-  # },
-  'large-photo': {'type': 'responsive-image',
-                  'sizes': '(min-width: 1200px) 800px, (min-width: 992px) 650px, \
-                  (min-width: 768px) 718px, 100vw',
-                  'srcset': [('600w', ["scale_in 600 450 True"]),
-                             ('800w', ["scale_in 800 600 True"]),
-                             ('1600w', ["scale_in 1600 1200 True"]),
-                  ],
-                  'default': '800w',
-  },
-      }
 JINJA2CONTENT_TEMPLATES="content"
 
 # Whether to display pages on the menu of the template. Templates may or may not honor this setting.
 DISPLAY_PAGES_ON_MENU = True
 
 # Whether to display categories on the menu of the template.
-DISPLAY_CATEGORIES_ON_MENU = True
+DISPLAY_CATEGORIES_ON_MENU = False
 
 DISPLAY_TAGS_ON_MENU = False
 
@@ -94,19 +67,32 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 TYPOGRIFY = True
-# Blogroll
-LINKS = (("Lta's Blog", 'http://blog.lta.io/'),
-         ("Lumy's website", 'https://www.lumy.me'),
-         ("Lumy's cv", 'http://cv.lumy.me/'),
-        ("Rohja's Blog", "https://blog.rohja.com/"),
-) 
+
+SHOW_SITESUBTITLE_IN_HTML = True
+SHOW_SOCIAL_ON_INDEX_PAGE_HEADER = True
+
+SHOW_FULL_ARTICLE = False
+COLOR_SCHEME_CSS="tomorrow_night.css"
 
 # Social widget
-MSOCIAL = (
-    ('Twitter', 'https://twitter.com/Lumy4242', "fab fa-2x fa-twitter"),
-    ('Github', 'https://github.com/lumy', "fab fa-2x fa-github"),
-    ('Music', 'https://soundcloud.com/lumyi', "fab fa-2x fa-soundcloud"),
+SOCIAL = (
+  ('twitter', 'https://twitter.com/Lumy4242'),
+  ('github', 'https://github.com/lumy'),
+  ('music', 'https://soundcloud.com/lumyi'),
+  ('envelope', 'mailto:contact@lumy.me'),
+  ("home", 'https://www.lumy.me'),
+  ("id-card", 'https://cv.lumy.me/'),
+  ("users", 'https://blog.lta.io/'),
+  ("users", "https://blog.rohja.com/"),
 )
+
+# Blogroll
+# Unused for now
+# LINKS = (("Lta's Blog", 'http://blog.lta.io/'),
+#         ("Rohja's Blog", "https://blog.rohja.com/"),
+# )
+
+HEADER_COVER = '/images/banner_default.jpg'
 
 DEFAULT_PAGINATION = 10
 
@@ -115,14 +101,8 @@ RELATIVE_URLS = False
 
 DELETE_OUTPUT_DIRECTORY = True
 
-import os
-
-def get_about(lang):
-  return ABOUT_ME[lang]
-
 JINJA_FILTERS = {
-  "get_about": get_about,
 }
-TWITTER_USERNAME="lumy4242"
+
 
 
