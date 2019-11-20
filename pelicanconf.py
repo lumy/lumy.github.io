@@ -15,12 +15,17 @@ CATEGORY_URL = '{slug}/category'
 CATEGORY_SAVE_AS = '{slug}/category.html'
 
 ARTICLE_URL = '{category}/{slug}/'
-ARTICLE_SAVE_AS = '{category}/{slug}/index.html'
+ARTICLE_SAVE_AS = '{category}/{slug}.html'
 
 TIMEZONE = 'Europe/Paris'
 
 DEFAULT_LANG = 'en'
 JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
+
+ABOUT_ME={
+  "en":"a little about me",
+  "fr":"un peu plus sur moi",
+}
 
 # Other themes
 # plumage
@@ -42,9 +47,10 @@ RESPONSIVE_IMAGE = True
 FIGURE_NUMBERS = True
 
 LIBRAVATAR_AUTHOR_EMAIL="lumy@lumy.me"
-LIBRAVATAR_SIZE=50
-SITELOGO_SIZE=50
+LIBRAVATAR_SIZE=220
+SITELOGO_SIZE=220
 MENUITEMS=()
+AVATAR=True
 
 I18N_SUBSITES = {
     'fr': {
@@ -109,31 +115,14 @@ RELATIVE_URLS = False
 
 DELETE_OUTPUT_DIRECTORY = True
 
-def extract_trans(article, lang, url):
-  for trans in article.translations:
-    if trans.lang == lang:
-        return trans.url
-    return url
-
-languages_lookup = {
-                 'en': 'English',
-                 'fr': 'Francais',
-                 }
-def lookup_lang_name(lang_code):
-  return languages_lookup[lang_code]
-
 import os
 
-def generate_url_lang(lang_file):
-  lang, filename = lang_file[0], lang_file[1]
-  if lang != "en":
-    return os.path.join("/", lang, filename)
-  else:
-    return os.path.join("/", filename)
+def get_about(lang):
+  return ABOUT_ME[lang]
 
 JINJA_FILTERS = {
-    'extract_trans': extract_trans,
-    'lookup_lang_name': lookup_lang_name,
-  "generate_url_lang": generate_url_lang,
+  "get_about": get_about,
 }
 TWITTER_USERNAME="lumy4242"
+
+

@@ -9,9 +9,12 @@
                         {% include "includes/article_info.html" %}
                     </div>
                 {% endif %}
-                <div class="summary">{{ article.summary }}
-                    {% include 'includes/comment_count.html' %}
-                    <a class="btn btn-default btn-xs" href="{{ SITEURL }}/{{ article.url }}">{{ _('more') }} ...</a>
+										<div class="summary">{{ article.summary }}
+											<div>
+												{% if article.mini %}{{ article.mini }}{% endif %}
+											</div>
+											{% include 'includes/comment_count.html' %}
+											<a class="btn btn-default btn-xs" href="{{ SITEURL }}/{{ article.url }}">{{ _('more') }} ...</a>
                 </div>
             </article>
             <hr/>
