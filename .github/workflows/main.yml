@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: 
+      - gh-pages
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run a multi-line script
+      run: |
+        pip3 install -r requirements.txt
+        make html
+        
