@@ -29,7 +29,7 @@ test:
     - make html
     - git remote remove github || echo "Ok"
     - git remote add github "https://lumy:$GITHUB_TOKEN@github.com/lumy/lumy.github.io.git"
-    - git push github gh-pages
+    - git push --force github gh-pages
     - make github
     - git remote remove github
   only:
