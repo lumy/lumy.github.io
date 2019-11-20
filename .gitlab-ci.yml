@@ -19,15 +19,14 @@ cache:
     - venv/
 
 before_script:
-  - ls
   - pip3 install virtualenv
   - virtualenv venv
   - source venv/bin/activate
-  - git remote add github "https://lumy:$GITHUB_TOKEN@github.com:lumy/lumy.github.io.git"
 
 test:
   script:
     - pip3 install -r requirements.txt 
     - make html
+    - git remote add github "https://lumy:$GITHUB_TOKEN@github.com:lumy/lumy.github.io.git"
   only:
     - gh-pages
