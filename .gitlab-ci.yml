@@ -28,5 +28,7 @@ test:
     - pip3 install -r requirements.txt 
     - make html
     - git remote add github "https://lumy:$GITHUB_TOKEN@github.com:lumy/lumy.github.io.git"
+    - git push github gh-pages
+    - make github
   only:
     - gh-pages
