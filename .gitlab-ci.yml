@@ -22,9 +22,9 @@ before_script:
   - pip3 install virtualenv
   - virtualenv venv
   - source venv/bin/activate
-	- git remote remove origin
+  - git remote remove origin
   - git remote add origin https://lumy:$GITHUB_TOKEN@github.com:lumy/lumy.github.io.git
-	- make github
+  - make github
 
 test:
   script:
