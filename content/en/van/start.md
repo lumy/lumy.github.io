@@ -1,13 +1,15 @@
 Title: How it started
-slug: start
-Tags: van, not-to-do
 Date: 2019-11-11
+Modified: 2019-11-12
 Category: Van
-url: van/start.html
-lang: en
-summary: Temp Test
-mini: <img alt="Van" class="figures" src="/images/van_back.jpg" style="max-width: 40%; height: auto;">
-translation: false
+Tags: van, not-to-do
+Slug: start
+Authors: Lumy
+Summary: How did i got my van.
+Url: van/start.html
+Lang: en
+Headline: Resume of article
+Header_Cover: /images/van_back.jpg
 
 # Got the van
 
@@ -20,7 +22,7 @@ a bad idea to run a check by a professional.
 
 It was sold with some plank, a bedspring and some multilayer isolation.
 The seller already had put the floor and some isolation under.
-![Van]({static}/images/van_inside.jpg){class="figures " }
+![Van]({static}/images/van_inside.jpg){class="figures " style="max-width: 100%; height: auto; " }
 
 The sheet metal it's another story, i didn't really check well and I didn't saw all the rust.
 
