@@ -104,5 +104,4 @@ DELETE_OUTPUT_DIRECTORY = True
 JINJA_FILTERS = {
 }
 
-
-
+STATIC_PATHS = ["images", "favicon.ico"]

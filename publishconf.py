@@ -12,7 +12,7 @@ from pelicanconf import *
 
 # If your site is available via HTTPS, make sure SITEURL begins with https://
 SITEURL = 'https://blog.lumy.me'
-STATIC_PATHS = ["images", "extra/CNAME"]
+STATIC_PATHS = ["images", "extra/CNAME", "favicon.ico"]
 EXTRA_PATH_METADATA = { 'extra/CNAME': {'path': 'CNAME'}}
 RELATIVE_URLS = False
 
