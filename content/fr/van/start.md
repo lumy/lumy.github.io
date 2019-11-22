@@ -9,7 +9,7 @@ Summary: How did i got my van
 Url: van/start.html
 Lang: fr
 Headline: Resume of article
-Header_cover: /images/van_back.jpg
+Header_cover: van
 
 # Got the van
 

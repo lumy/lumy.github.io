@@ -1,6 +1,6 @@
 Title: How it started
-Date: 2019-11-11
-Modified: 2019-11-12
+Date: 2019-11-8
+Modified: 2019-11-10
 Category: Van
 Tags: van, not-to-do
 Slug: start
@@ -8,50 +8,8 @@ Authors: Lumy
 Summary: How did i got my van.
 Url: van/start.html
 Lang: en
-Headline: Resume of article
-Header_Cover: /images/van_back.jpg
-
-# Got the van
-
-After weeks [**hunting**](#hunting) the perfect van, I finally found one.
-Well we're far from the perfect, I was tired and really wanted to start.
-[That was not the best idea I've ever had](#bad-idea)
-
-It's a Renault Master L2H2, the engine seems in relative good state but i wouldn't be
-a bad idea to run a check by a professional.
-
-It was sold with some plank, a bedspring and some multilayer isolation.
-The seller already had put the floor and some isolation under.
-![Van]({static}/images/van_inside.jpg){class="figures " style="max-width: 100%; height: auto; " }
-
-The sheet metal it's another story, i didn't really check well and I didn't saw all the rust.
-
-# The Rust
-
-I’ve discovered the rust hidden under putty and some weird resin.
-
-![Van]({static}/images/rust2.jpg){class="figures " style="max-width: 100%; height: auto; " }
-The weird resin very hard to remove, on the top of the van,
-
-And what a surprise, or not, i discovered under the shitty stuff.
-
-![Van]({static}/images/rust.jpg){class="figures " style="max-width: 100%; height: auto; " }
-
-So i started to list what i had to do before being able to work on the inside part:
-
-- i've to sand every part that as serious rust on it of:
-    - the top.
-    - the side.
-    - the doors inside/outside.
-- put some product for the rust.
-- fix the hole with epoxy and glass fiber.
-- paint every worked parts.
-- change all lock.
-- repair the middle door that open with difficulty.
-- repair the broken door handle.
-- check what is under the floor what isolation and what state is the steel sheets.
-
-See you for [day one of work!](/van/day1/)
+Headline: How did I got my van and the suprise after bought it.
+Header_Cover: van
 
 <div id="hunting"></div>
 ## Hunting
@@ -78,18 +36,67 @@ The prices were a little higher that what i was looking for, otherwise it was a 
 
 It was decided it would be something really close to an L2H2. stay [KISS for now (Keep it simple and stupid).](/tag/python)
 
+And I found this van, it was a cute one, had already lived (288000km) and had alot of maintenance's bill for the last 10 years;
+I though that was a good sign and I said yes.
+![camion caisse]({static}/images/camion_caisse.jpg){class="figures " style="max-width: 40%; height: auto; float: right; " }
+There was a missunderstood between the seller and me, and while I was going to [a little juggling convention near Avignon (France)](juggling/jongle-en-zik),
+I almost did not got the van (which would have been better !), but i finally managed to buy it on a monday evening.
 
+<div id="gotit"></div>
+# Got the van
+
+After weeks **hunting** the perfect van, I finally found one.
+Well we're far from the perfect, I was tired and really wanted to start.
+[That was not the best idea I've ever had.](#bad-idea)
+
+It's a Renault Master L2H2, the engine seems in relative good state but i wouldn't be
+a bad idea to run a [check by a professional](/van/engine).
+
+It was sold with some plank, a bedspring and some multilayer isolation.
+The seller already had put the floor and some isolation under.
+![Van]({static}/images/van_inside.jpg){class="figures " style="max-width: 100%; height: auto; " }
+
+The sheet metal it's another story, i didn't really check well and I didn't saw all the rust.
+
+<div id="rust"></div>
+# The Rust
+
+I’ve discovered the rust hidden under putty and some weird resin.
+
+![Van]({static}/images/rust2.jpg){class="figures " style="max-width: 100%; height: auto; " }
+The weird resin very hard to remove, on the top of the van,
+
+And what a surprise, or not, i discovered under the shitty stuff.
+
+![Van]({static}/images/rust.jpg){class="figures " style="max-width: 100%; height: auto; " }
+
+So i started to list what i had to do before being able to work on the inside part:
+
+- i've to sand every part that as serious rust on it of:
+    - the top.
+    - the side.
+    - the doors inside/outside.
+- put some product for the rust.
+- fix the hole with epoxy and glass fiber.
+- paint every worked parts.
+- change all lock.
+- repair the middle door that open with difficulty.
+- repair the broken door handle.
+- check what is under the floor what isolation and what state is the steel sheets.
+
+See you for [day one of work!](/van/rust/) [(Unless you want to see a NOT-TO-DO list)[#bad-idea]
 
 <div id="bad-idea"></div>
 ## Bad Idea
 
 There I'll list few stuff you should keep in mind / do while looking for a van.
-I don't pretend that will make you buy the perfect van, neither you won't do any mistake. But if i can help by sharing my mistakes.
+I don't pretend that will make you buy the perfect van, neither you won't do any mistake. But if i can help by sharing my mistakes:
 
 - **DO NOT** start looking for a van you will work on at the beginning of winter (unless you have a closed place). I'm suffering to work on cold days and i can't work more than 8h (let's be honest it's around 5h in the good day), the sunset is too early and it's not gonna get better before few months.
+- If you can have a covered place to work it make it way easier (you can avoid weather trouble specially if you have rust on your van !).
 - Don't rush. Neither you or the seller should be in a rush. Even if the seller has some important money deadline.
 - Try every door yourself. If the seller show you something, do the same manipulation just after him, verify you can do it as well and easily.
-- If something on the steel sheets seems weird, grind it with something just a little. you could discover some pretty good shit (soon some picture of a friend's van)
+- If something on the steel sheets seems weird, grind it with something just a little. you could discover some pretty good shit (soon some picture of a friend's van).
 - check the top of the van. It's not easy access but find a way to climb and check !
 
 If I find anything new to add to the list I'll (before the end of the work it might even be a post about what not to do during the whole process of buying and working on the van).

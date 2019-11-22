@@ -37,7 +37,7 @@ THEME='clean-blog'
 PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = [
   # "libravatar",
-  "i18n_subsites",
+  # "i18n_subsites",
 ]
 
 # LIBRAVATAR_AUTHOR_EMAIL="lumy@lumy.me"
@@ -101,7 +101,21 @@ RELATIVE_URLS = False
 
 DELETE_OUTPUT_DIRECTORY = True
 
-JINJA_FILTERS = {
+HEADER_COVERS = {
+  "van": "/images/van_back.jpg",
+  "juggling":"",
+  "cs":"/images/chef-run.gif",
+  "misc":"",
 }
 
+def output_header(header):
+  return HEADER_COVERS[header]
+
+JINJA_FILTERS = {
+  'header': output_header,
+}
+
+
 STATIC_PATHS = ["images", "favicon.ico"]
+
+VAN_HEADER = "/images/van_back.jpg"

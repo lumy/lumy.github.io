@@ -38,7 +38,7 @@
                 <meta property="twitter:image" content="{ article.twitter_image }}">
             {% endif %}
         {% elif article.header_cover %}
-            <meta name="twitter:image" content="{{ article.header_cover }}">
+            <meta name="twitter:image" content="{{ article.header_cover|header }}">
         {% elif HEADER_COVER %}
             <meta name="twitter:image" content="{{ HEADER_COVER }}">
         {% else %}
@@ -78,7 +78,7 @@
                 <meta property="og:image" content="{{ article.og_image }}">
             {% endif %}
         {% elif article.header_cover %}
-            <meta property="og:image" content="{{ article.header_cover }}">
+            <meta property="og:image" content="{{ article.header_cover|header }}">
         {% elif HEADER_COVER %}
             <meta property="og:image" content="{{ HEADER_COVER }}">
         {% else %}
@@ -89,7 +89,7 @@
 {% block header %}
     <!-- Page Header -->
     {% if article.header_cover %}
-        <header class="intro-header" style="background-image: url('{{ article.header_cover }}')">
+        <header class="intro-header" style="background-image: url('{{ article.header_cover|header }}')">
     {% elif HEADER_COVER %}
         <header class="intro-header" style="background-image: url('{{ HEADER_COVER }}')">
     {% elif HEADER_COLOR %}
