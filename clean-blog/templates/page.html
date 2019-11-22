@@ -5,7 +5,7 @@
 {% block header %}
     <!-- Page Header -->
     {% if page.header_cover %}
-        <header class="intro-header" style="background-image: url('{{ page.header_cover|headerr }}')">
+        <header class="intro-header" style="background-image: url('{{ page.header_cover|header }}')">
     {% elif HEADER_COVER %}
         <header class="intro-header" style="background-image: url('{{ HEADER_COVER }}')">
     {% elif HEADER_COLOR %}
