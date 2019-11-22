@@ -118,4 +118,4 @@ JINJA_FILTERS = {
 
 STATIC_PATHS = ["images", "favicon.ico"]
 
-VAN_HEADER = "/images/van_back.jpg"
+INTRO_CONTENTO_CONTENT = "welcome on my road"
