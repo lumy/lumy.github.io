@@ -1,9 +1,12 @@
 Title: van
 URL: van/
 save_as: van/index.html
-lang: en
-date: 01/01/2000
+Lang: en
 Header_Cover: van
 
-[a link relative to category](category)
-test_landing
+[Let you drove into the story of my van,](category)
+
+[how did i repair it,](start)
+
+[how did i build inside,](#)
+

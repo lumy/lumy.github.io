@@ -47,7 +47,7 @@
             </div>
         </div>
     {% endif %}
-    {% for article in articles_page.object_list %}
+    {% for article in dates_page.object_list|slice %}
         <div class="post-preview">
             <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">
                 <h2 class="post-title">

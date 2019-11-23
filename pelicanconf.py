@@ -111,11 +111,14 @@ HEADER_COVERS = {
 def output_header(header):
   return HEADER_COVERS[header]
 
+def slice_list(l, s=4):
+  return l[:s]
+
 JINJA_FILTERS = {
   'header': output_header,
+  "slice": slice_list,
 }
-
 
 STATIC_PATHS = ["images", "favicon.ico"]
 
-INTRO_CONTENTO_CONTENT = "welcome on my road"
+INTRO_CONTENT = "welcome on my road"
