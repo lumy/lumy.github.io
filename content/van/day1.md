@@ -37,7 +37,7 @@ I started to sand every part. inside and outside. and soon it started to look be
 ![Van]({static}/images/sanding2.jpg){class="figures " style="max-width: 50%; height: auto; float:right;" }
 ![Van]({static}/images/sanding3.jpg){class="figures " style="max-width: 50%; height: auto; float: right;" }
 
-Then i should have put some product to transform the rest of rust into another chemical entity, that i could clean. 
+Then i should have put some product to transform the rest of rust into another chemical entity, that i could clean.
 Treat the metal sheets and cover them.
 
 But, the bad weathers, my work taking too much time,  I didn't find the right time to do it.
@@ -52,4 +52,21 @@ It probably helped a little but not that much, and i'd look at it today,
 
 I'm not back at square 0 but i'll have to sand a little every part before going for the product.
 
-# Finally getting result ?
+# Time is missing, weather is against me
+
+But I've found the time to do some work, and worked the rust on all the top with some product.
+![rust fighter]({static}/images/antirouille_product.jpg){class="figures " style="max-width: 50%; height: auto; float:left;" }
+
+After 24h TADAM: ![rust fighter]({static}/images/antirouille_after.jpg){class="figures "style="max-width: 30%; height: auto; float:right;" }
+![rust fighter]({static}/images/antirouille_after2.jpg){class="figures " style="max-width: 60%; height: auto" }
+
+So I started the next step Epoxy and glass fiber:
+![rust fighter]({static}/images/session_epoxy.jpg){class="figures " style="max-width: 60%; height: auto" }
+
+It took around 2h to do it properly.
+![rust fighter]({static}/images/session_epoxy2.jpg){class="figures " style="max-width: 60%; height:auto float:right;"}
+![rust fighter]({static}/images/session_epoxy_3.jpg){class="figures " style="max-width: 60%; height:auto float:left;"}
+
+I've waited 24h but it wasn't enough.
+
+One more day.
