@@ -54,18 +54,20 @@ I'm not back at square 0 but i'll have to sand a little every part before going 
 
 # Time is missing, weather is against me
 
+
 But I've found the time to do some work, and worked the rust on all the top with some product.
-![rust fighter]({static}/images/antirouille_product.jpg){class="figures " style="max-width: 50%; height: auto; float:left;" }
 
-After 24h TADAM: ![rust fighter]({static}/images/antirouille_after.jpg){class="figures "style="max-width: 30%; height: auto; float:right;" }
-![rust fighter]({static}/images/antirouille_after2.jpg){class="figures " style="max-width: 60%; height: auto" }
+![rust fighter]({static}/images/antirouille_produit.jpg){class="figures " style="max-width: 60%; height: auto;" }
 
-So I started the next step Epoxy and glass fiber:
-![rust fighter]({static}/images/session_epoxy.jpg){class="figures " style="max-width: 60%; height: auto" }
+I protected it with a tarp for the night, woke up early to remove it and after 24h TADAM !
+![rust fighter]({static}/images/antirouille_after.jpg){class="figures "style="max-width: 50%; height: auto; float:right;" }
+![rust fighter]({static}/images/antirouille_after_2.jpg){class="figures " style="max-width: 50%; height: auto" }
 
-It took around 2h to do it properly.
-![rust fighter]({static}/images/session_epoxy2.jpg){class="figures " style="max-width: 60%; height:auto float:right;"}
-![rust fighter]({static}/images/session_epoxy_3.jpg){class="figures " style="max-width: 60%; height:auto float:left;"}
+So I started the next step Epoxy and glass fiber, it took around 2h to do it all proprely.
+![rust fighter]({static}/images/session_epoxy.jpg){class="figures " style="max-width: 60%; height:auto" }
+
+![rust fighter]({static}/images/session_epoxy2.jpg){class="figures " style="max-width: 45%; height:auto float:right;"}
+![rust fighter]({static}/images/session_epoxy_3.jpg){class="figures " style="max-width: 45%; height:auto float:left; transform: rotate(180deg)"}
 
 I've waited 24h but it wasn't enough.
 
