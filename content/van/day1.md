@@ -69,6 +69,68 @@ So I started the next step Epoxy and glass fiber, it took around 2h to do it all
 ![rust fighter]({static}/images/session_epoxy2.jpg){class="figures " style="max-width: 45%; height:auto float:right;"}
 ![rust fighter]({static}/images/session_epoxy_3.jpg){class="figures " style="max-width: 45%; height:auto float:left; transform: rotate(180deg)"}
 
-I've waited 24h but it wasn't enough.
+I waited 48h because one epoxy didn't dry, and so I had to remove and redo.
+![rust fighter]({static}/images/middle_layout_1.jpeg){class="figures " style="max-width: 100%; height:auto;"}
 
-One more day.
+![rust fighter]({static}/images/middle_layout_2.jpeg){class="figures " style="max-width: 50%; height:auto; float:right;"}
+![rust fighter]({static}/images/middle_layout_3.jpeg){class="figures " style="max-width: 50%; height:auto;"}
+
+While i was re-doing this one i did the second layer on the others. I made 3 layers for now. I'll see how it hold and
+if i need more layout i'll try to wait summer time to do them.
+![rust fighter]({static}/images/last_layout_1.jpg){class="figures " style="max-width: 50%; height:auto; float:right;"}
+![rust fighter]({static}/images/last_layout_2.jpg){class="figures " style="max-width: 50%; height:auto;"}
+![rust fighter]({static}/images/last_layout_6.jpg){class="figures " style="max-width: 50%; height:auto; float:right;"}
+![rust fighter]({static}/images/last_layout_7.jpg){class="figures " style="max-width: 50%; height:auto;"}
+
+I also started to remove every plastic part on the side of the van to check and oooooh. What a Surprise (not really)!?
+
+![rust fighter]({static}/images/right_side_before_2_1.jpg){class="figures " style="max-width: 50%; height: auto; float:right;"}
+![rust fighter]({static}/images/right_side_before_1.jpg){class="figures " style="max-width: 50%; max-height: auto; transform: rotate(180deg)"}
+
+The first side was okay, there was rust, but it had not got the time to break everything. I treated that pretty fast.
+
+![rust fighter]({static}/images/Lumy_4.jpg){class="figures " style="max-width: 50%; height:auto; float:right;"}
+![rust fighter]({static}/images/Lumy_7.jpg){class="figures " style="max-width: 50%; height:auto;"}
+![rust fighter]({static}/images/Lumy_12.jpg){class="figures " style="max-width: 100%; height:auto;"}
+
+But the other side, That's another story.
+
+# Holes on left side.
+
+I could try to describe what i went through. But i think images would be more accurate.
+
+![left_side]({static}/images/left_side_before_1.jpg){class="figures " style="max-width: 50%; height:auto; float:right;"}
+![left_side]({static}/images/left_side_before_2.jpg){class="figures " style="max-width: 50%; height:auto;"}
+![left_side]({static}/images/left_side_before_3.jpg){class="figures " style="max-width: 50%; height:auto; float:right;"}
+![left_side]({static}/images/left_side_sanding_1.jpg){class="figures " style="max-width: 50%; height:auto;"}
+![left_side]({static}/images/left_side_sanding_2.jpg){class="figures " style="max-width: 50%; height:auto; float:right;"}
+![left_side]({static}/images/left_side_sanding_4.jpg){class="figures " style="max-width: 50%; height:auto;"}
+![left_side]({static}/images/left_side_sanding_5.jpg){class="figures " style="max-width: 50%; height:auto; float:right;"}
+![left_side]({static}/images/left_side_sanding_back_1.jpg){class="figures " style="max-width: 50%; height:auto;"}
+
+I though it was long so, here some kitty pictures in middle. she spend most of her day with me when I'm working on the van.
+![Nova]({static}/images/Nova_3.jpg){class="figures " style="max-width: 50%; height:auto; float:right;"}
+![Nova]({static}/images/Nova_19_1.jpg){class="figures " style="max-width: 50%; height:auto;"}
+she chill around the van,
+
+![rust fighter]({static}/images/Nova_4.jpg){class="figures " style="max-width: 50%; height:auto; float:right;"}
+![rust fighter]({static}/images/Nova_5.jpg){class="figures " style="max-width: 50%; height:auto;"}
+![rust fighter]({static}/images/Nova_18.jpg){class="figures " style="max-width: 50%; height:auto; float: right"}
+Or she play in the grass around just next to me.
+
+![left_side]({static}/images/left_side_sanding_back_2.jpg){class="figures " style="max-width: 50%; height:auto; float:right;"}
+![left_side]({static}/images/left_side_sanding_back_3.jpg){class="figures " style="max-width: 50%; height:auto;"}
+![left_side]({static}/images/left_side_sanding_back_4.jpg){class="figures " style="max-width: 50%; height:auto; float:right;"}
+![left_side]({static}/images/left_side_sanding_back_5.jpg){class="figures " style="max-width: 50%; height:auto;"}
+![left_side]({static}/images/left_side_sanding_back_8.jpg){class="figures " style="max-width: 50%; height:auto; float:right;"}
+![left_side]({static}/images/left_side_sanding_back_9.jpg){class="figures " style="max-width: 50%; height:auto;"}
+![left_side]({static}/images/left_side_sanding_3.jpg){class="figures " style="max-width: 100%; height:auto;"}
+
+I think you understand why do i felt so bad.
+Because of this two metal part in the middle. I wasn't sure how to do it, even if I could do it without breaking this.
+
+I would used alot of epoxy there. But a housemate got a pretty good idea and help me on this.
+
+# Square Holes on left side.
+
+![left_side]({static}/images/cutting_left_side.jpg){class="figures " style="max-width: 100%; height:auto;"}

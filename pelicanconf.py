@@ -122,3 +122,4 @@ JINJA_FILTERS = {
 STATIC_PATHS = ["images", "favicon.ico"]
 
 INTRO_CONTENT = "welcome on my road"
+STATIC_PATHS = ["images", "extra/CNAME", "favicon.ico"]

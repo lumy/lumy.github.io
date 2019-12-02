@@ -109,5 +109,7 @@ github: publish
 	ghp-import -m "Generate Pelican site" -r github -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
 	git push --force github $(GITHUB_PAGES_BRANCH)
 
+check_images:
+	python3 check_images.py
 
-.PHONY: html help clean regenerate serve serve-global devserver publish github
+.PHONY: html help clean regenerate serve serve-global devserver publish github dockerserver
