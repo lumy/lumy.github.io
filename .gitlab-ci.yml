@@ -37,7 +37,6 @@ test:
   stage: test
   script:
     - pip3 install -r requirements.txt 
-    - make html
     - git remote remove github || echo "Ok"
     - git remote add github "https://lumy:$GITHUB_TOKEN@github.com/lumy/lumy.github.io.git"
     - make github
