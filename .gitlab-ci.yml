@@ -28,6 +28,9 @@ docker:
     - docker pull $CONTAINER_TAG || true
     - docker build --cache-from $CONTAINER_TAG --tag $CONTAINER_TAG  .
     - docker push $CONTAINER_TAG
+  only:
+    changes:
+      - Dockerfile
 
 test:
   image: $CONTAINER_TAG
