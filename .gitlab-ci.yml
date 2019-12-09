@@ -28,8 +28,6 @@ docker:
     - docker pull $CONTAINER_TAG || true
     - docker build --cache-from $CONTAINER_TAG --tag $CONTAINER_TAG  .
     - docker push $CONTAINER_TAG
-  only:
-    - gh-pages
 
 test:
   image: $CONTAINER_TAG
@@ -41,5 +39,4 @@ test:
     - git remote add github "https://lumy:$GITHUB_TOKEN@github.com/lumy/lumy.github.io.git"
     - make github
     - git remote remove github
-  only:
-    - gh-pages
+
