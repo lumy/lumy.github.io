@@ -106,6 +106,7 @@ publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
 
 github: publish
+	rm -fr .gitattributes .git/hooks/pre-push
 	ghp-import -m "Generate Pelican site" -r github -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
 	git push --force github $(GITHUB_PAGES_BRANCH)
 
