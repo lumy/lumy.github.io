@@ -106,7 +106,6 @@ publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
 
 github: publish
-	cd output/images && rm picture.7z
 	ghp-import -m "Generate Pelican site" -r github -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
 	git push --force github $(GITHUB_PAGES_BRANCH)
 
