@@ -37,7 +37,6 @@ THEME='clean-blog'
 PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = [
   "filetime_from_git",
-  "optimize_images",
   # "libravatar",
   # "i18n_subsites",
 ]
@@ -94,7 +93,7 @@ SOCIAL = (
 #         ("Rohja's Blog", "https://blog.rohja.com/"),
 # )
 
-HEADER_COVER = '/images/banner_default.jpg'
+HEADER_COVER = '/images/headers/banner_default.jpg'
 
 DEFAULT_PAGINATION = 10
 
@@ -104,9 +103,9 @@ RELATIVE_URLS = False
 DELETE_OUTPUT_DIRECTORY = True
 
 HEADER_COVERS = {
-  "van": "/images/van_back.jpg",
+  "van": "/images/headers/van_back.jpg",
   "juggling":"",
-  "cs":"/images/chef-run.gif",
+  "cs":"/images/headers/chef-run.gif",
   "misc":"",
 }
 
