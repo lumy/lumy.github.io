@@ -61,7 +61,7 @@ help:
 	@echo 'Set the RELATIVE variable to 1 to enable relative urls                    '
 	@echo '                                                                          '
 
-html: unpack_images
+html:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
 
 themes:
@@ -70,17 +70,17 @@ themes:
 clean:
 	[ ! -d $(OUTPUTDIR) ] || rm -rf $(OUTPUTDIR)
 
-regenerate: unpack_images
+regenerate:
 	$(PELICAN) -r $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
 
-serve: unpack_images
+serve:
 ifdef PORT
 	$(PELICAN) -l $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS) -p $(PORT)
 else
 	$(PELICAN) -l $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
 endif
 
-serve-global: unpack_images
+serve-global:
 ifdef SERVER
 	$(PELICAN) -l $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS) -p $(PORT) -b $(SERVER)
 else
@@ -88,7 +88,7 @@ else
 endif
 
 
-devserver: unpack_images
+devserver:
 ifdef PORT
 	$(PELICAN) -lr $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS) -p $(PORT)
 else
@@ -102,7 +102,7 @@ else
 	$(PELICAN) -lr $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS) -b 0.0.0.0
 endif
 
-publish: unpack_images
+publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
 
 github: publish
@@ -110,11 +110,7 @@ github: publish
 	ghp-import -m "Generate Pelican site" -r github -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
 	git push --force github $(GITHUB_PAGES_BRANCH)
 
-unpack_images:
-	@echo "Please wait few second"
-	cd ./content/images && 7za x picture.7z -y -aos
-
-check_images: unpack_images
+check_images:
 	python3 check_images.py
 
 .PHONY: html help clean regenerate serve serve-global devserver publish github dockerserver
