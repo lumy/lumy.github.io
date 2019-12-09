@@ -3,6 +3,3 @@ __pycache__
 output
 .env
 .idea
-*.jpg
-*.jpeg
-*.gif
