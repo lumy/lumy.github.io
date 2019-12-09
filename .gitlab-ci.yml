@@ -1,0 +1,45 @@
+# This file is a template, and might need editing before it works on your project.
+# Official language image. Look for the different tagged releases at:
+# https://hub.docker.com/r/library/python/tags/
+image: python:3.5-buster
+
+# Change pip's cache directory to be inside the project directory since we can
+# only cache local items.
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  URL_DOCKER: "docker.lumy.me"
+  CONTAINER_TAG: "$URL_DOCKER/$CI_PROJECT_PATH:$CI_COMMIT_REF_SLUG"
+
+stages:
+  - build
+  - test
+
+cache:
+  paths:
+    - .cache/pip
+
+docker:
+  image: docker:stable
+  stage: build 
+  services:
+    - docker:dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $URL_DOCKER
+    - docker pull $CONTAINER_TAG || true
+    - docker build --cache-from $CONTAINER_TAG --tag $CONTAINER_TAG  .
+    - docker push $CONTAINER_TAG
+  only:
+    - gh-pages
+
+test:
+  image: $CONTAINER_TAG
+  stage: test
+  script:
+    - pip3 install -r requirements.txt 
+    - make html
+    - git remote remove github || echo "Ok"
+    - git remote add github "https://lumy:$GITHUB_TOKEN@github.com/lumy/lumy.github.io.git"
+    - make github
+    - git remote remove github
+  only:
+    - gh-pages
