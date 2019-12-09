@@ -28,7 +28,7 @@ this van didn't have power steering. Very hard to drive, and smelling so much. I
 not a good idea.
 
 So I started to look for a van like this
-![camion caisse]({static}/images/camion_caisse.jpg){class="figures " style="max-width: 70%; height: auto; float: right; " }
+![camion caisse]({static}/images/van/camion_caisse.jpg){class="figures " style="max-width: 70%; height: auto; float: right; " }
 
 My though was that i wouldn't have trouble with the isolation around the wheel, i would be able to move the container if it's well kept.
 The prices were a little higher that what i was looking for, otherwise it was a little too old for me and I would have more space to arrange inside but it would take more time than a simple van.
@@ -38,7 +38,7 @@ It was decided it would be something really close to an L2H2. stay [KISS for now
 
 And I found this van, it was a cute one, had already lived (288000km) and had alot of maintenance's bill for the last 10 years;
 I though that was a good sign and I said yes.
-![camion caisse]({static}/images/camion_caisse.jpg){class="figures " style="max-width: 40%; height: auto; float: right; " }
+![camion caisse]({static}/images/van/camion_caisse.jpg){class="figures " style="max-width: 40%; height: auto; float: right; " }
 There was a missunderstood between the seller and me, and while I was going to [a little juggling convention near Avignon (France)](juggling/jongle-en-zik),
 I almost did not got the van (which would have been better !), but i finally managed to buy it on a monday evening.
 
@@ -54,7 +54,7 @@ a bad idea to run a [check by a professional](/van/engine).
 
 It was sold with some plank, a bedspring and some multilayer isolation.
 The seller already had put the floor and some isolation under.
-![Van]({static}/images/van_inside.jpg){class="figures " style="max-width: 100%; height: auto; " }
+![Van]({static}/images/van/van_inside.jpg){class="figures " style="max-width: 100%; height: auto; " }
 
 The sheet metal it's another story, i didn't really check well and I didn't saw all the rust.
 
@@ -63,12 +63,12 @@ The sheet metal it's another story, i didn't really check well and I didn't saw 
 
 I’ve discovered the rust hidden under putty and some weird resin.
 
-![Van]({static}/images/rust2.jpg){class="figures " style="max-width: 100%; height: auto; " }
+![Van]({static}/images/van/rust2.jpg){class="figures " style="max-width: 100%; height: auto; " }
 The weird resin very hard to remove, on the top of the van,
 
 And what a surprise, or not, i discovered under the shitty stuff.
 
-![Van]({static}/images/rust.jpg){class="figures " style="max-width: 100%; height: auto; " }
+![Van]({static}/images/van/rust.jpg){class="figures " style="max-width: 100%; height: auto; " }
 
 So i started to list what i had to do before being able to work on the inside part:
 
@@ -84,7 +84,7 @@ So i started to list what i had to do before being able to work on the inside pa
 - repair the broken door handle.
 - check what is under the floor what isolation and what state is the steel sheets.
 
-See you for [day one of work!](/van/rust/) [(Unless you want to see a NOT-TO-DO list)[#bad-idea]
+See you for [day one of work!](/van/rust/) [(Unless you want to see a NOT-TO-DO list)](#bad-idea)
 
 <div id="bad-idea"></div>
 ## Bad Idea
