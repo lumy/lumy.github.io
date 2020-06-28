@@ -11,8 +11,6 @@ Lang: en
 Headline: The Rust - An unfair fight.
 Header_Cover: van
 
-WIP
-
 # The tools for the rust
 
 at the end of the article i'll give some mistake i've learn from.
