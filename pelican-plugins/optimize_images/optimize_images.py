@@ -48,8 +48,7 @@ def optimize(dirpath, filename):
     :param name: A file name to be optimized
     """
     filepath = os.path.join(dirpath, filename)
-    print('optimizing %s', filepath)
-    logger.info('optimizing %s', filepath)
+    logger.info('optimizing ', filepath)
 
     ext = os.path.splitext(filename)[1]
     command, silent, verbose = COMMANDS[ext]
