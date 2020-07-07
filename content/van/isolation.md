@@ -2,8 +2,9 @@ Title: Phase 2 - Isolation - 1
 slug: isolation
 Tags: van
 Date: 2020-02-11
+Url: van/isolation.html
 Category: Van
-lang: en
+Lang: en
 status:
 
 # Time Beetween post.
