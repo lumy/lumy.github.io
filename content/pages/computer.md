@@ -16,5 +16,5 @@ I also started to learn how to administrate linux, server and services.
 After few years of work in python, I decided to work as a Devops.
 And I am since then working freelance as DevOps or Python Developper. 
 
-[You can find article I wrote about computer science]((/computer-science/category)
+[You can find article I wrote about computer science](/computer-science/category)
 
