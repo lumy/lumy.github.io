@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <title>Phase 1 - The rust</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="/theme/css/code_blocks/tomorrow_night.css" rel="stylesheet">
+
+
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+        <meta name="description" content="The Rust - An unfair fight.">
+
+        <meta name="author" content="Lumy">
+
+        <meta name="tags" content="van">
+
+	                <meta property="og:locale" content="">
+		<meta property="og:site_name" content="Lumy's Hobbies">
+
+	<meta property="og:type" content="article">
+            <meta property="article:author" content="https://blog.lumy.me/author/lumy.html">
+	<meta property="og:url" content="https://blog.lumy.me/van/rust.html">
+	<meta property="og:title" content="Phase 1 - The rust">
+	<meta property="article:published_time" content="2019-12-09 10:53:02+01:00">
+            <meta property="og:description" content="The Rust - An unfair fight.">
+
+            <meta property="og:image" content="/images/headers/van_back.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@Lumy4242">
+        <meta name="twitter:title" content="Phase 1 - The rust">
+
+            <meta name="twitter:image" content="/images/headers/van_back.jpg">
+
+            <meta name="twitter:description" content="The Rust - An unfair fight.">
+</head>
+
+<body class="article-rust">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://blog.lumy.me/">Lumy's Hobbies</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                            <li><a href="https://blog.lumy.me/computer-science/">computer-science</a></li>
+                            <li><a href="https://blog.lumy.me/juggling/">juggling</a></li>
+                            <li><a href="https://blog.lumy.me/misc/index">misc</a></li>
+                            <li><a href="https://blog.lumy.me/van/">van</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('/images/headers/van_back.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Phase 1 - The rust</h1>
+                            <h3 class="subheading">The Rust - An unfair fight.</h3>
+                        <span class="meta">Posted by
+                                <a href="https://blog.lumy.me/author/lumy.html">Lumy</a>
+                             on Mon 09 December 2019
+                        </span>
+                            <span class="meta">Updated on Sun 28 June 2020</span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <h1>The tools for the&nbsp;rust</h1>
+<p>at the end of the article i&#8217;ll give some mistake i&#8217;ve learn&nbsp;from.</p>
+<p>First of all i never had any toolbox, direction the shop to buy a toolbox and fill it with tools i&#8217;ll&nbsp;need.</p>
+<ul>
+<li>Sandpaper (or better some <a href="https://www.leroymerlin.fr/v3/p/produits/toile-emeri-e1500118817">emerie tissue</a>)</li>
+<li>cutter</li>
+<li>files</li>
+<li>spatula</li>
+</ul>
+<h1>Fighting the&nbsp;rust</h1>
+<p><img alt="Van" class="figures " src="https://blog.lumy.me/images/van/before_van.jpg" style="max-width: 50%; height: auto; float:left;">
+<img alt="Van" class="figures " src="https://blog.lumy.me/images/van/rust3.jpg" style="max-width: 50%; height: auto; float:right;">
+<img alt="Van" class="figures " src="https://blog.lumy.me/images/van/rust5.jpg" style="max-width: 50%; height: auto; float:left;">
+<img alt="Van" class="figures " src="https://blog.lumy.me/images/van/rust6.jpg" style="max-width: 50%; height: auto; float:right;"></p>
+<p>I started to sand every part. inside and outside. and soon it started to look&nbsp;better.</p>
+<p><img alt="Van" class="figures " src="https://blog.lumy.me/images/van/sanding1.jpg" style="max-width: 50%; height: auto; float:left;">
+<img alt="Van" class="figures " src="https://blog.lumy.me/images/van/sanding2.jpg" style="max-width: 50%; height: auto; float:right;">
+<img alt="Van" class="figures " src="https://blog.lumy.me/images/van/sanding3.jpg" style="max-width: 50%; height: auto; float: right;"></p>
+<p>Then i should have put some product to transform the rest of rust into another chemical entity, that i could clean.
+Treat the metal sheets and cover&nbsp;them.</p>
+<p>But, the bad weathers, my work taking too much time,  I didn&#8217;t find the right time to do it.
+The weather got worst and it had been raining too much the last day.
+Weather reports says it&#8217;s gonna be better on monday i&#8217;ll do everything at one.
+I covered my van trying to protect the metal sheet from the&nbsp;rain,</p>
+<p>It probably helped a little but not that much, and i&#8217;d look at it today,
+<img alt="Van" class="figures " src="https://blog.lumy.me/images/van/rust_is_back.jpg" style="max-width: 50%; height: auto; float:right;">
+<img alt="Van" class="figures " src="https://blog.lumy.me/images/van/rust_is_back2.jpg" style="max-width: 50%; height: auto; float:left;"></p>
+<p>I&#8217;m not back at square 0 but i&#8217;ll have to sand a little every part before going for the&nbsp;product.</p>
+<h1>Time is missing, weather is against&nbsp;me</h1>
+<p>But I&#8217;ve found the time to do some work, and worked the rust on all the top with some&nbsp;product.</p>
+<p><img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/antirouille_produit.jpg" style="max-width: 60%; height: auto;"></p>
+<p>I protected it with a tarp for the night, woke up early to remove it and after 24h <span class="caps">TADAM</span> !
+<img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/antirouille_after.jpg" style="max-width: 50%; height: auto; float:right;">
+<img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/antirouille_after_2.jpg" style="max-width: 50%; height: auto"></p>
+<p>So I started the next step Epoxy and glass fiber, it took around 2h to do it all proprely.
+<img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/session_epoxy.jpg" style="max-width: 60%; height:auto"></p>
+<p><img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/session_epoxy2.jpg" style="max-width: 45%; height:auto float:right;">
+<img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/session_epoxy_3.jpg" style="max-width: 45%; height:auto float:left; transform: rotate(180deg)"></p>
+<p>I waited 48h because one epoxy didn&#8217;t dry, and so I had to remove and redo.
+<img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/middle_layout_1.jpeg" style="max-width: 100%; height:auto;"></p>
+<p><img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/middle_layout_2.jpeg" style="max-width: 50%; height:auto; float:right;">
+<img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/middle_layout_3.jpeg" style="max-width: 50%; height:auto;"></p>
+<p>While i was re-doing this one i did the second layer on the others. I made 3 layers for now. I&#8217;ll see how it hold and
+if i need more layout i&#8217;ll try to wait summer time to do them.
+<img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/last_layout_1.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/last_layout_2.jpg" style="max-width: 50%; height:auto;">
+<img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/last_layout_6.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/last_layout_7.jpg" style="max-width: 50%; height:auto;"></p>
+<p>I also started to remove every plastic part on the side of the van to check and oooooh. What a Surprise (not&nbsp;really)!?</p>
+<p><img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/right_side_before_2_1.jpg" style="max-width: 50%; height: auto; float:right;">
+<img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/right_side_before_1.jpg" style="max-width: 50%; max-height: auto; transform: rotate(180deg)"></p>
+<p>The first side was okay, there was rust, but it had not got the time to break everything. I treated that pretty&nbsp;fast.</p>
+<p><img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/Lumy_4.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/Lumy_7.jpg" style="max-width: 50%; height:auto;">
+<img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/Lumy_12.jpg" style="max-width: 100%; height:auto;"></p>
+<p>But the other side, That&#8217;s another&nbsp;story.</p>
+<h1>Holes on left&nbsp;side.</h1>
+<p>I could try to describe what i went through. But i think images would be more&nbsp;accurate.</p>
+<p><img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/left_side_before_1.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/left_side_before_2.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/left_side_before_3.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/left_side_sanding_1.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/left_side_sanding_2.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/left_side_sanding_4.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/left_side_sanding_5.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/left_side_sanding_back_1.jpg" style="max-width: 50%; height:auto;"></p>
+<p>I though it was long so, here some kitty pictures in middle. she spend most of her day with me when I&#8217;m working on the van.
+<img alt="Nova" class="figures " src="https://blog.lumy.me/images/van/Nova_3.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="Nova" class="figures " src="https://blog.lumy.me/images/van/Nova_19_1.jpg" style="max-width: 50%; height:auto;">
+she chill around the&nbsp;van,</p>
+<p><img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/Nova_4.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/Nova_5.jpg" style="max-width: 50%; height:auto;">
+<img alt="rust fighter" class="figures " src="https://blog.lumy.me/images/van/Nova_18.jpg" style="max-width: 50%; height:auto; float: right">
+Or she play in the grass around just next to&nbsp;me.</p>
+<p><img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/left_side_sanding_back_2.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/left_side_sanding_back_3.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/left_side_sanding_back_4.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/left_side_sanding_back_5.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/left_side_sanding_back_8.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/left_side_sanding_back_9.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/left_side_sanding_3.jpg" style="max-width: 100%; height:auto;"></p>
+<p>I think you understand why did I felt so bad.
+Because of this two metal part in the middle. I wasn&#8217;t sure how to do it, even if I could do it without breaking&nbsp;this.</p>
+<p>I would used alot of epoxy there. But a housemate got a pretty good idea and help me on&nbsp;this.</p>
+<h1>Square Holes on left&nbsp;side.</h1>
+<p>He cutted everything ! It didn&#8217;t took him that much time.
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/cutting_left_side.jpg" style="max-width: 100%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/cutting.jpg" style="max-width: 100%; height:auto;"></p>
+<p>There is the result. Now i&#8217;ve to fill all of that with&nbsp;something.</p>
+<p><img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/cutted_1.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/cutted_2.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/cutted_3.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/cutted_4.jpg" style="max-width: 50%; height:auto;"></p>
+<p>First I protected the exterior side with some carton and then i filled from inside with some polyurethane foam.
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/mousse_exterieur_protection.jpg" style="max-width: 100%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/mousse_interieur2.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/mousse_interieur3.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/mousse_interieur4.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/mousse_interieur5.jpg" style="max-width: 50%; height:auto;"></p>
+<p>The result wasn&#8217;t the excepted one. After few days to let the foam grows. Cut some part and let it
+grows again. There was the result outside and inside.
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/degeuli_inside.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/extended_mousse_inside2.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/mousse_interieur1.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/mousse_exte_1.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/mousse_exte_3.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/mousse_exte_4.jpg" style="max-width: 50%; height:auto;"></p>
+<p>I put some foam again inside and outside to try to fill the gap.
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/mousse_exte_repose_1.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/mousse_exte_repose_2.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/mousse_exte_repose_4.jpg" style="max-width: 100%; height:auto;"></p>
+<p>while the foam was growing I finished to treat the metal sheet inside on the roof with some paint to
+protect, the right side was put back, complete some whole with epoxy.
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/paint_inside.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/outside_epoxy.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/right_side_done_1.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/right_side_done_2.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/right_side_done_3.jpg" style="max-width: 100%; height:auto;"></p>
+<h1>More surprises on the&nbsp;floor.</h1>
+<p>Once I saw the end of the rust on the side, I started the floor.
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/removing_ground_2.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/removing_ground_1.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/removing_ground_3.jpg" style="max-width: 100%; height:auto;"></p>
+<p>And Surprise (You wouldn&#8217;t have though so) !
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/real_ground_1.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/real_ground_2.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/real_ground_3.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/real_ground_4.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/real_ground_5.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/real_ground_6.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/real_ground_7.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/real_ground_8.jpg" style="max-width: 50%; height:auto;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/real_ground_9.jpg" style="max-width: 50%; height:auto; float:right;">
+<img alt="left_side" class="figures " src="https://blog.lumy.me/images/van/real_ground_10.jpg" style="max-width: 50%; height:auto;"></p>
+    </article>
+
+        <div class="tags">
+            <p>tags: <a href="https://blog.lumy.me/tag/van.html">van</a></p>
+        </div>
+
+    <hr>
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                            <li>
+                                <a href="https://twitter.com/Lumy4242">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/lumy">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://soundcloud.com/lumyi">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-music fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mailto:contact@lumy.me">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.lumy.me">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-home fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://cv.lumy.me/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-id-card fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://blog.lta.io/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://blog.rohja.com/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+<p class="copyright text-muted">
+    Blog powered by <a href="http://getpelican.com">Pelican</a>,
+    which takes great advantage of <a href="http://python.org">Python</a>. <br />        &copy;  lumy
+</p>                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/theme/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/theme/js/bootstrap.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="/theme/js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

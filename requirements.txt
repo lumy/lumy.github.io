@@ -1,7 +1,0 @@
-typogrify
-pelican
-markdown
-fontawesome-markdown==0.2.6
-ghp-import
-gitpython
-
