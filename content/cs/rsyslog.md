@@ -12,30 +12,31 @@ Tags: admin-sys
 
 # Introduction
 
-Even if it's an hold software (started in 2004) it's still fairly used, and receiving new version.
-It's also the default syslogd of some linux system.
+Even if it is an old software (started in 2004 by [Rainer Gerhards](https://rainer.gerhards.net/))
+it is still receiving new version and fairly used as it is the default [syslogd service for some linux system](https://en.wikipedia.org/wiki/Rsyslog#Distribution).
 
-Rsyslog receive logs from rsyslog client, which can be very usefull to backup logs or hunt bugs.
+Rsyslog receive logs from syslog compatible client, usefull for monitoring.
 
-it can be used in udp, plain tcp or tcp with ssl, we will see how to setup a server
-receiving syslog from many clients with tcp and ssl;
+it can be used in udp, plain tcp or tcp with ssl, we will see how to setup a server and clients with tcp and ssl using Let'sencrypt certificates;
 
-bonus we'll configure nginx to forward his log as well.
+**_bonus_** we'll configure nginx to forward his log as well.
 
 # Requirement
 
-I'm using Debian10 with the lastest version of rsyslog (rsyslogd  8.2010.0 (aka 2020.10)), from
+I an using Debian10 with the lastest version of rsyslog (rsyslogd  8.2010.0 aka 2020.10), from
 [OpenSuse Build
-System](https://software.opensuse.org//download.html?project=home%3Argerhards&package=rsyslog),
-there is a bug only present on debian10 where systemd timeout but rsyslogd has indeed (re)started.
-But it has been tested on Ubuntu, Fedora and CentOS. you're alsoo gonna need to install others
-packages.
+System](https://software.opensuse.org//download.html?project=home%3Argerhards&package=rsyslog), but
+any Unix system should work.
 
-The full list: `rsyslog rsyslog-ossl rsyslog-imptcp rsyslog-gnutls`
+_A bug is present on debian10_ where `systemctl` timeout but `rsyslogd` has indeed (re)started.
 
-You'll need a server with a domain name pointing to it, you'll need letsencrypt (certbot) and to
-generate the certificate for each server.
-You'll also need the root issuer certificate. To check which is it you can use openssl.
+The packages list to install: `rsyslog rsyslog-ossl rsyslog-gnutls`
+
+You will need a server and a client with a domain name pointing to them and certificates generated
+by certbot ([letsencrypt](https://letsencrypt.org)),
+and the root issuer certificate.
+
+You will find the name of your issuer with the command `openssl`.
 
 ```shell
  sudo openssl x509 -in /etc/letsencrypt/live/<domain>/chain.pem  -text -noout
@@ -49,14 +50,13 @@ Certificate:
 
 ```
 
-In this case you'll need DST Root CA X3 file, you should be able to find the issuer certificate at
-[https://letsencrypt.org/certificates/](https://letsencrypt.org/certificates/) take the time to read until you find your certificate.
+In this case you'll need `DST Root CA X3` file, you should be able to find the [issuer certificate there](https://letsencrypt.org/certificates/) take the time to read until you find your certificate.
 
-Right we ready to start.
+**Right** we ready to start.
 
 # Server setup
 
-Let's see our main configuration file, i've tried as much as possible to use the new notation.
+ The main configuration file will look like this, I tried as much as possible to use the new notation.
 
 ```
 $ cat /etc/rsyslog.conf
@@ -68,8 +68,6 @@ global(
   defaultNetstreamDriverCAFile="/etc/letsencrypt/ca/dst-root-ca-x3.pem"
   defaultNetstreamDriverCertFile="/etc/letsencrypt/live/remote-server.example.tld/fullchain.pem"
   defaultNetstreamDriverKeyFile="/etc/letsencrypt/live/remote-server.example.tld/privkey.pem"
-  workDirectory="/var/spool/rsyslog"
-  preserveFQDN=on
   maxMessageSize="2k"
 )
 
@@ -90,33 +88,55 @@ input(
   port="<PORT>"
 )
 include(
-   file="/path/to/35-perhost.conf"
-   mode="abort-if-missing"
-)
-include(
-   file="/path/to/50-default.conf"
+   file="/path/to/30-per-host.conf"
    mode="abort-if-missing"
 )
 ```
 
-On the server side we're going to use ossl module instead of gnutls (which is less accurate on error
-messages.)
+### Global options
 
-`PermittedPeer=["<FingerPrint Client>"]` You'll need also the fingerprint of the client certificate
-you're gonna authorize (it's due to the x509/fingerprint option, which is the most recommended
-authentification mode to use).
+The [global](https://www.rsyslog.com/doc/v8-stable/rainerscript/global.html) options can be changed
+at your will.
 
-For that on the client certificate we're running the command:
+- `defaultNetstreamDriver.*` this enable tls, if use it will except one of `ossl|gtls` module with
+  the right ssl configuration (chain, cert and key).
+- `maxMessageSize` Anything above the maximum Configured message size allowed will be truncated
+  raise if your receive truncated messages.
+
+### modules options
+
+You will probably want to keep the `imklog` ([reads kernel log and submits them to
+ syslogd](https://www.rsyslog.com/doc/v8-stable/configuration/modules/imklog.html)) and `imuxsock`
+([provides the ability to accept messages via Unix sockets](https://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxsock.html)) with default system configuration.
+
+Then comes our [imtcp configuration](https://www.rsyslog.com/doc/v8-stable/configuration/modules/imtcp.html),
+on the server side we are using the module `ossl` instead of `gtls` (which is less explicit on error).
+
+- `MaxSessions` Sets the maximum number of sessions supported default. is 200 which should be enough.
+- `StreamDriver.*` [ssl
+  configuration](https://www.rsyslog.com/doc/v8-stable/configuration/modules/imtcp.html#streamdriver-name),
+  ossl is pretty picky. I would advice to [look at the documentation before changing anything](https://www.rsyslog.com/doc/master/concepts/ns_ossl.html).
+- `PermittedPeer=["<FingerPrint Client>"]` You'll need also the fingerprint of the client
+  certificate you're gonna authorize. It is due to the `x509/fingerprint` option, which is the [most
+  recommended authentification mode](https://www.rsyslog.com/doc/master/concepts/ns_ossl.html).
+
+To get the Certificate Fingerprint the `openssl` command will be used.
 ```shell
  $ sudo openssl x509 -fingerprint -in /etc/letsencrypt/live/<domain_name>/fullchain.pem
-SHA1 Fingerprint=<Fingerprint>
+SHA1 Fingerprint=XX:XX:XX:XX:XX
 ```
-It should look like this into your config file `["SHA1:XX:XX:[..]:XX", "SHA1:XX:XX:[..]:XX"]`
+It should look like this in your configuration file `["SHA1:XX:XX:[..]:XX", "SHA1:XX:XX:[..]:XX"]`
 
-# Per Host Config
+### Input and Include options
 
-Then in the folder `/etc/rsyslog.d` we're gonna create a file like `<priority>-<name-rule>.conf`
-A good priority and name for this file could be `30-server-per-host.conf`
+- `Input` will start a server on `address` and `port`, if address is not specified it will listen on
+all address.
+- `Include` another configuration file.
+
+## Per Host Config
+
+Then in the folder `/etc/rsyslog.d`, create a new file like `<priority>-<name-rule>.conf`.
+A good filename could be `30-server-per-host.conf`
 
 ```
 template (name="DynFile" type="string" string="/var/log/%HOSTNAME%/%syslogfacility-text%.log")
@@ -131,40 +151,64 @@ user.*                  -?DynFile
 # local7.*                ?DynNginxFile
 ```
 
-It will simply put syslog received message in folder named after Hostname and in file named after
-syslogfacility `cron.log daemon.log kern.log ...`.
+It will simply wrote received message in folder named after `hostname` and in file named after
+`facility`; if you want to gather `Nginx` logs,  remove the `#`.
 
-If you also want to log Nginx logs uncomment both of these line, for other syslog compatible
-you can inspire yourself from that.
+### `template` options:
 
-# Default Client Configuration
+- `name`: template name.
+- `type`: parameter specifies differents template types.
+- `string`: mandatory parameter because of type string. it will specify the file to use.
+
+[all `template` options can be found
+here](https://www.rsyslog.com/doc/v8-stable/configuration/templates.html), as well as an example of
+per-host template file.
+You will only use template to create Dynamic File but you have to know that it can be used to
+modify the content of received messages.
+
+### `selectors` options:
+
+- `facility.priority`: a facility here would be `cron` and a priority would be `debug` or `info` but
+  `*` mean every priority [more information](https://www.rsyslog.com/doc/v8-stable/configuration/sysklogd_format.html#selectors).
+- `?`: Dynamic filenames are indicated by specifying a questions mark “?” instead of a slash.
+  [Follow this link for more informations on dynamic and static file](https://www.rsyslog.com/doc/v8-stable/configuration/actions.html)
+- `-`: omit syncing the file after every logging.
+
+
+# Client Configuration
 
 There is nothing special about `rsyslog.conf`, just think to load all configuration files you're
-creating, load basic module and let's start creating a file in `rsyslog.d`.
+creating, here's a sample.
 
-If you wish to get Nginx log to rsyslog you're gonna have to open a local rsyslog server.
-
-Here we listen on udp, on localhost address (for Nginx if needed).
-```
-module(load="imudp")
-input(type="imudp" address="127.0.0.1" port="1514")
-```
-
-
-Then it's time to forward everything to the server, in a file write down (for example
-`49-remote.conf`).
 ```
 global(
 DefaultNetstreamDriver="ossl"
 DefaultNetstreamDriverCAFile="/etc/ssl/ca/dst-root-ca-x3.pem"
 DefaultNetstreamDriverCertFile="/etc/letsencrypt/live/client.example.tld/fullchain.pem"
 DefaultNetstreamDriverKeyFile="/etc/letsencrypt/live/client.example.tld/privkey.pem"
+preserveFQDN=on # should we preserve the FQDN (`hostname --fqdn`), you could set to `off` and use localhostname.
+# localHostname="mylocalhostname" # change the hostname sent by rsyslog.
+
 )
 
+module(load="imuxsock")
+module(load="imklog")
+
+include(
+   file="/path/to/49-remote.conf"
+   mode="abort-if-missing"
+)
+```
+
+## Forward configuration
+
+Then it is time to forward everything to the server, in a file write down (for example
+`49-remote.conf`).
+```
 action(
 type="omfwd"
 Target="remote-server.example.tld"
-Port="124"
+Port=<PORT>
 Protocol="tcp"
 StreamDriver="ossl"
 StreamDriverMode="1"
@@ -173,33 +217,42 @@ StreamDriverPermittedPeers="<FINGERPRINT_SERVER>"
 queue.spoolDirectory="/var/log"
 queue.filename="srvrfwd1"
 queue.maxDiskSpace="1G"
-queue.type="LinkedList"
+queue.type="Disk"
 queue.saveOnShutdown="on"
 )
 ```
 
-# Nginx configuration to write to syslogd
+### `action` Options
 
-In your sites configuration for nginx you'll have to set the right configuration.
+- `target,port,protocol`: It should be pointing at the server with same protocol and port value.
+- `StreamDriver.*`: Client ssl configuration. `PermittedPeers` should match server certificate fingerprint.
+- `queue.*`: [Queue configuration](https://www.rsyslog.com/doc/v8-stable/concepts/queues.html).
+  My queue configuration is a file on the disk `/var/log/srvrfwd1.00000001` it's not the fastest,
+  there's in-memory configuration available.
+
+## *Bonus* Nginx configuration
+
+In your site configuration you just have to set the right configuration.
 ```
 $ cat /etc/nginx/site-enable/default | grep log
-access_log syslog:server=127.0.0.1:1514,facility=local7,tag=<TAG_NAME>,severity=info;
-error_log  syslog:server=127.0.0.1:1514,facility=local7,tag=<TAG_NAME>,severity=info;
+access_log syslog:server=unix:/dev/log,facility=local7,tag=<TAG_NAME>,severity=info;
+error_log  syslog:server=unix:/dev/log,facility=local7,tag=<TAG_NAME>,severity=info;
 ```
 
-Note that in this configuration tag-name would end up being the filename for the log files.
-` <TAG_NAME> = %programname%`
+Remember the module `imuxsock` ? Well here we are using it, forwarding our log directly to `syslogd` socket.
 
+**Note**: In this configuration tag-name would end up being the filename for the log files.
+` <TAG_NAME> = %programname%`, if you want to change that, you would have to modify the template `DynNginxFile`.
 
 # Done
 
-You should be able to see your logs file on the remote server.
+You should be able to see your log file on the remote server. After a restart of rsyslog.
+You can verify the configuration file with `sudo rsyslogd -N 1 -f /etc/rsyslog.conf`.
 ```
-lumy@server:/var/log/client$ ls
+lumy@server:~$ ls /var/log/<hostname>/
 auth.log  authpriv.log  cron.log  nginx-<tag_name>.log
 ```
 
-Now you can automate this process with something like [chef](https://cinc.sh) or ansible.
+Now you can automate this process with something like [cinc](https://cinc.sh)/[chef](https://www.chef.io) or ansible.
 
-All documentation for rsyslog can be found on the official website:
-[rsyslog documentation](https://www.rsyslog.com/doc/master/)
+All documentations for [rsyslog can be found on the official website](https://www.rsyslog.com/doc/master/)
