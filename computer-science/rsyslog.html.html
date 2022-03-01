@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <title>Rsyslog and Letsencrypt</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="/theme/css/code_blocks/tomorrow_night.css" rel="stylesheet">
+
+
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+        <meta name="description" content="Secure configuration">
+
+        <meta name="author" content="lumy">
+
+        <meta name="tags" content="software">
+        <meta name="tags" content="web">
+        <meta name="tags" content="log">
+
+	                <meta property="og:locale" content="">
+		<meta property="og:site_name" content="Lumy's Hobbies">
+
+	<meta property="og:type" content="article">
+            <meta property="article:author" content="https://blog.lumy.me/author/lumy.html">
+	<meta property="og:url" content="https://blog.lumy.me/computer-science/rsyslog.html">
+	<meta property="og:title" content="Rsyslog and Letsencrypt">
+	<meta property="article:published_time" content="2020-11-23 21:03:14+01:00">
+            <meta property="og:description" content="Secure configuration">
+
+            <meta property="og:image" content="/images/headers/chef-run.gif">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@Lumy4242">
+        <meta name="twitter:title" content="Rsyslog and Letsencrypt">
+
+            <meta name="twitter:image" content="/images/headers/chef-run.gif">
+
+            <meta name="twitter:description" content="Secure configuration">
+</head>
+
+<body class="article-rsyslog.html">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://blog.lumy.me/">Lumy's Hobbies</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                            <li><a href="https://blog.lumy.me/computer-science/">computer-science</a></li>
+                            <li><a href="https://blog.lumy.me/juggling/">juggling</a></li>
+                            <li><a href="https://blog.lumy.me/misc/index">misc</a></li>
+                            <li><a href="https://blog.lumy.me/van/">van</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('/images/headers/chef-run.gif')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Rsyslog and Letsencrypt</h1>
+                            <h3 class="subheading">Secure configuration</h3>
+                        <span class="meta">Posted by
+                                <a href="https://blog.lumy.me/author/lumy.html">lumy</a>
+                             on Mon 23 November 2020
+                        </span>
+                            <span class="meta">Updated on Thu 26 November 2020</span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <h1>Introduction</h1>
+<p>Even if it is an old software (started in 2004 by <a href="https://rainer.gerhards.net/">Rainer Gerhards</a>)
+it is still receiving new version and fairly used as it is the default <a href="https://en.wikipedia.org/wiki/Rsyslog#Distribution">syslogd service for some linux system</a>.</p>
+<p>Rsyslog receive logs from syslog compatible client, usefull for&nbsp;monitoring.</p>
+<p>it can be used in udp, plain tcp or tcp with ssl, we will see how to setup a server and clients with tcp and ssl using Let&#8217;sencrypt&nbsp;certificates;</p>
+<p><strong><em>bonus</em></strong> we&#8217;ll configure nginx to forward his log as&nbsp;well.</p>
+<h1>Requirement</h1>
+<p>I an using Debian10 with the lastest version of rsyslog (rsyslogd  8.2010.0 aka 2020.10), from
+<a href="https://software.opensuse.org//download.html?project=home%3Argerhards&amp;package=rsyslog">OpenSuse Build
+System</a>, but
+any Unix system should&nbsp;work.</p>
+<p><em>A bug is present on debian10</em> where <code>systemctl</code> timeout but <code>rsyslogd</code> has indeed&nbsp;(re)started.</p>
+<p>The packages list to install: <code>rsyslog rsyslog-ossl rsyslog-gnutls</code></p>
+<p>You will need a server and a client with a domain name pointing to them and certificates generated
+by certbot (<a href="https://letsencrypt.org">letsencrypt</a>),
+and the root issuer&nbsp;certificate.</p>
+<p>You will find the name of your issuer with the command <code>openssl</code>.</p>
+<div class="highlight"><pre><span></span><code> sudo openssl x509 -in /etc/letsencrypt/live/&lt;domain&gt;/chain.pem  -text -noout
+Certificate:
+    <span class="o">[</span>...<span class="o">]</span>
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: <span class="nv">O</span> <span class="o">=</span> Digital Signature Trust Co., <span class="nv">CN</span> <span class="o">=</span> DST Root CA X3
+        Validity
+            Not Before: Mar <span class="m">17</span> <span class="m">16</span>:40:46 <span class="m">2016</span> GMT
+            Not After : Mar <span class="m">17</span> <span class="m">16</span>:40:46 <span class="m">2021</span> GMT
+</code></pre></div>
+
+
+<p>In this case you&#8217;ll need <code>DST Root CA X3</code> file, you should be able to find the <a href="https://letsencrypt.org/certificates/">issuer certificate there</a> take the time to read until you find your&nbsp;certificate.</p>
+<p><strong>Right</strong> we ready to&nbsp;start.</p>
+<h1>Server&nbsp;setup</h1>
+<p>The main configuration file will look like this, I tried as much as possible to use the new&nbsp;notation.</p>
+<div class="highlight"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rsyslog</span><span class="o">.</span><span class="n">conf</span><span class="w"></span>
+
+<span class="c1"># Globals</span><span class="w"></span>
+<span class="c1"># https://www.rsyslog.com/doc/v8-stable/rainerscript/global.html</span><span class="w"></span>
+<span class="n">global</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">defaultNetstreamDriver</span><span class="o">=</span><span class="s2">&quot;ossl&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="n">defaultNetstreamDriverCAFile</span><span class="o">=</span><span class="s2">&quot;/etc/letsencrypt/ca/dst-root-ca-x3.pem&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="n">defaultNetstreamDriverCertFile</span><span class="o">=</span><span class="s2">&quot;/etc/letsencrypt/live/remote-server.example.tld/fullchain.pem&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="n">defaultNetstreamDriverKeyFile</span><span class="o">=</span><span class="s2">&quot;/etc/letsencrypt/live/remote-server.example.tld/privkey.pem&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="n">maxMessageSize</span><span class="o">=</span><span class="s2">&quot;2k&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+
+<span class="n">module</span><span class="p">(</span><span class="nb">load</span><span class="o">=</span><span class="s2">&quot;imuxsock&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">module</span><span class="p">(</span><span class="nb">load</span><span class="o">=</span><span class="s2">&quot;imklog&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="c1"># https://www.rsyslog.com/doc/v8-stable/configuration/modules/imtcp.html</span><span class="w"></span>
+<span class="n">module</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nb">load</span><span class="o">=</span><span class="s2">&quot;imtcp&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="n">MaxSessions</span><span class="o">=</span><span class="s2">&quot;200&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="n">StreamDriver</span><span class="o">.</span><span class="n">Name</span><span class="o">=</span><span class="s2">&quot;ossl&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="n">StreamDriver</span><span class="o">.</span><span class="n">Mode</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="n">StreamDriver</span><span class="o">.</span><span class="n">AuthMode</span><span class="o">=</span><span class="s2">&quot;x509/fingerprint&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="n">PermittedPeer</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;FingerPrint Client&gt;&quot;</span><span class="p">]</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+<span class="n">input</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">type</span><span class="o">=</span><span class="s2">&quot;imtcp&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="n">port</span><span class="o">=</span><span class="s2">&quot;&lt;PORT&gt;&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+<span class="n">include</span><span class="p">(</span><span class="w"></span>
+<span class="w">   </span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;/path/to/30-per-host.conf&quot;</span><span class="w"></span>
+<span class="w">   </span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;abort-if-missing&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+
+<h3>Global&nbsp;options</h3>
+<p>The <a href="https://www.rsyslog.com/doc/v8-stable/rainerscript/global.html">global</a> options can be changed
+at your&nbsp;will.</p>
+<ul>
+<li><code>defaultNetstreamDriver.*</code> this enable tls, if use it will except one of <code>ossl|gtls</code> module with
+  the right ssl configuration (chain, cert and&nbsp;key).</li>
+<li><code>maxMessageSize</code> Anything above the maximum Configured message size allowed will be truncated
+  raise if your receive truncated&nbsp;messages.</li>
+</ul>
+<h3>modules&nbsp;options</h3>
+<p>You will probably want to keep the <code>imklog</code> (<a href="https://www.rsyslog.com/doc/v8-stable/configuration/modules/imklog.html">reads kernel log and submits them to
+ syslogd</a>) and <code>imuxsock</code>
+(<a href="https://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxsock.html">provides the ability to accept messages via Unix sockets</a>) with default system&nbsp;configuration.</p>
+<p>Then comes our <a href="https://www.rsyslog.com/doc/v8-stable/configuration/modules/imtcp.html">imtcp configuration</a>,
+on the server side we are using the module <code>ossl</code> instead of <code>gtls</code> (which is less explicit on&nbsp;error).</p>
+<ul>
+<li><code>MaxSessions</code> Sets the maximum number of sessions supported default. is 200 which should be&nbsp;enough.</li>
+<li><code>StreamDriver.*</code> <a href="https://www.rsyslog.com/doc/v8-stable/configuration/modules/imtcp.html#streamdriver-name">ssl
+  configuration</a>,
+  ossl is pretty picky. I would advice to <a href="https://www.rsyslog.com/doc/master/concepts/ns_ossl.html">look at the documentation before changing anything</a>.</li>
+<li><code>PermittedPeer=["&lt;FingerPrint Client&gt;"]</code> You&#8217;ll need also the fingerprint of the client
+  certificate you&#8217;re gonna authorize. It is due to the <code>x509/fingerprint</code> option, which is the <a href="https://www.rsyslog.com/doc/master/concepts/ns_ossl.html">most
+  recommended authentification mode</a>.</li>
+</ul>
+<p>To get the Certificate Fingerprint the <code>openssl</code> command will be&nbsp;used.</p>
+<div class="highlight"><pre><span></span><code> $ sudo openssl x509 -fingerprint -in /etc/letsencrypt/live/&lt;domain_name&gt;/fullchain.pem
+SHA1 <span class="nv">Fingerprint</span><span class="o">=</span>XX:XX:XX:XX:XX
+</code></pre></div>
+
+
+<p>It should look like this in your configuration file <code>["SHA1:XX:XX:[..]:XX", "SHA1:XX:XX:[..]:XX"]</code></p>
+<h3>Input and Include&nbsp;options</h3>
+<ul>
+<li><code>Input</code> will start a server on <code>address</code> and <code>port</code>, if address is not specified it will listen on
+all&nbsp;address.</li>
+<li><code>Include</code> another configuration&nbsp;file.</li>
+</ul>
+<h2>Per Host&nbsp;Config</h2>
+<p>Then in the folder <code>/etc/rsyslog.d</code>, create a new file like <code>&lt;priority&gt;-&lt;name-rule&gt;.conf</code>.
+A good filename could be <code>30-server-per-host.conf</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">template</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;DynFile&quot;</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="n">string</span><span class="o">=</span><span class="s2">&quot;/var/log/%HOSTNAME%/</span><span class="si">%s</span><span class="s2">yslogfacility-text%.log&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="c1"># template (name=&quot;DynNginxFile&quot; type=&quot;string&quot; string=&quot;/var/log/%HOSTNAME%/nginx-%programname%.log&quot;)</span><span class="w"></span>
+
+<span class="n">auth</span><span class="p">,</span><span class="n">authpriv</span><span class="o">.*</span><span class="w">         </span><span class="err">?</span><span class="n">DynFile</span><span class="w"></span>
+<span class="n">cron</span><span class="o">.*</span><span class="w">                  </span><span class="err">?</span><span class="n">DynFile</span><span class="w"></span>
+<span class="n">daemon</span><span class="o">.*</span><span class="w">                </span><span class="o">-</span><span class="err">?</span><span class="n">DynFile</span><span class="w"></span>
+<span class="n">kern</span><span class="o">.*</span><span class="w">                  </span><span class="err">?</span><span class="n">DynFile</span><span class="w"></span>
+<span class="n">mail</span><span class="o">.*</span><span class="w">                  </span><span class="err">?</span><span class="n">DynFile</span><span class="w"></span>
+<span class="n">user</span><span class="o">.*</span><span class="w">                  </span><span class="o">-</span><span class="err">?</span><span class="n">DynFile</span><span class="w"></span>
+<span class="c1"># local7.*                ?DynNginxFile</span><span class="w"></span>
+</code></pre></div>
+
+
+<p>It will simply wrote received message in folder named after <code>hostname</code> and in file named after
+<code>facility</code>; if you want to gather <code>Nginx</code> logs,  remove the <code>#</code>.</p>
+<h3><code>template</code> options:</h3>
+<ul>
+<li><code>name</code>: template&nbsp;name.</li>
+<li><code>type</code>: parameter specifies differents template&nbsp;types.</li>
+<li><code>string</code>: mandatory parameter because of type string. it will specify the file to&nbsp;use.</li>
+</ul>
+<p><a href="https://www.rsyslog.com/doc/v8-stable/configuration/templates.html">all <code>template</code> options can be found
+here</a>, as well as an example of
+per-host template file.
+You will only use template to create Dynamic File but you have to know that it can be used to
+modify the content of received&nbsp;messages.</p>
+<h3><code>selectors</code> options:</h3>
+<ul>
+<li><code>facility.priority</code>: a facility here would be <code>cron</code> and a priority would be <code>debug</code> or <code>info</code> but
+  <code>*</code> mean every priority <a href="https://www.rsyslog.com/doc/v8-stable/configuration/sysklogd_format.html#selectors">more information</a>.</li>
+<li><code>?</code>: Dynamic filenames are indicated by specifying a questions mark “?” instead of a slash.
+  <a href="https://www.rsyslog.com/doc/v8-stable/configuration/actions.html">Follow this link for more informations on dynamic and static&nbsp;file</a></li>
+<li><code>-</code>: omit syncing the file after every&nbsp;logging.</li>
+</ul>
+<h1>Client&nbsp;Configuration</h1>
+<p>There is nothing special about <code>rsyslog.conf</code>, just think to load all configuration files you&#8217;re
+creating, here&#8217;s a&nbsp;sample.</p>
+<div class="highlight"><pre><span></span><code><span class="k">global</span><span class="p">(</span><span class="w"></span>
+<span class="n">DefaultNetstreamDriver</span><span class="o">=</span><span class="s2">&quot;ossl&quot;</span><span class="w"></span>
+<span class="n">DefaultNetstreamDriverCAFile</span><span class="o">=</span><span class="s2">&quot;/etc/ssl/ca/dst-root-ca-x3.pem&quot;</span><span class="w"></span>
+<span class="n">DefaultNetstreamDriverCertFile</span><span class="o">=</span><span class="s2">&quot;/etc/letsencrypt/live/client.example.tld/fullchain.pem&quot;</span><span class="w"></span>
+<span class="n">DefaultNetstreamDriverKeyFile</span><span class="o">=</span><span class="s2">&quot;/etc/letsencrypt/live/client.example.tld/privkey.pem&quot;</span><span class="w"></span>
+<span class="n">preserveFQDN</span><span class="o">=</span><span class="k">on</span><span class="w"> </span><span class="c1"># should we preserve the FQDN (`hostname --fqdn`), you could set to `off` and use localhostname.</span><span class="w"></span>
+<span class="c1"># localHostname=&quot;mylocalhostname&quot; # change the hostname sent by rsyslog.</span><span class="w"></span>
+
+<span class="p">)</span><span class="w"></span>
+
+<span class="n">module</span><span class="p">(</span><span class="k">load</span><span class="o">=</span><span class="s2">&quot;imuxsock&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">module</span><span class="p">(</span><span class="k">load</span><span class="o">=</span><span class="s2">&quot;imklog&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">include</span><span class="p">(</span><span class="w"></span>
+<span class="w">   </span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;/path/to/49-remote.conf&quot;</span><span class="w"></span>
+<span class="w">   </span><span class="k">mode</span><span class="o">=</span><span class="s2">&quot;abort-if-missing&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+
+<h2>Forward&nbsp;configuration</h2>
+<p>Then it is time to forward everything to the server, in a file write down (for example
+<code>49-remote.conf</code>).</p>
+<div class="highlight"><pre><span></span><code><span class="n">action</span><span class="p">(</span><span class="w"></span>
+<span class="n">type</span><span class="o">=</span><span class="s2">&quot;omfwd&quot;</span><span class="w"></span>
+<span class="n">Target</span><span class="o">=</span><span class="s2">&quot;remote-server.example.tld&quot;</span><span class="w"></span>
+<span class="n">Port</span><span class="o">=&lt;</span><span class="n">PORT</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">Protocol</span><span class="o">=</span><span class="s2">&quot;tcp&quot;</span><span class="w"></span>
+<span class="n">StreamDriver</span><span class="o">=</span><span class="s2">&quot;ossl&quot;</span><span class="w"></span>
+<span class="n">StreamDriverMode</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="w"></span>
+<span class="n">StreamDriverAuthMode</span><span class="o">=</span><span class="s2">&quot;x509/fingerprint&quot;</span><span class="w"></span>
+<span class="n">StreamDriverPermittedPeers</span><span class="o">=</span><span class="s2">&quot;&lt;FINGERPRINT_SERVER&gt;&quot;</span><span class="w"></span>
+<span class="n">queue</span><span class="o">.</span><span class="n">spoolDirectory</span><span class="o">=</span><span class="s2">&quot;/var/log&quot;</span><span class="w"></span>
+<span class="n">queue</span><span class="o">.</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;srvrfwd1&quot;</span><span class="w"></span>
+<span class="n">queue</span><span class="o">.</span><span class="n">maxDiskSpace</span><span class="o">=</span><span class="s2">&quot;1G&quot;</span><span class="w"></span>
+<span class="n">queue</span><span class="o">.</span><span class="n">type</span><span class="o">=</span><span class="s2">&quot;Disk&quot;</span><span class="w"></span>
+<span class="n">queue</span><span class="o">.</span><span class="n">saveOnShutdown</span><span class="o">=</span><span class="s2">&quot;on&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+
+<h3><code>action</code> Options</h3>
+<ul>
+<li><code>target,port,protocol</code>: It should be pointing at the server with same protocol and port&nbsp;value.</li>
+<li><code>StreamDriver.*</code>: Client ssl configuration. <code>PermittedPeers</code> should match server certificate&nbsp;fingerprint.</li>
+<li><code>queue.*</code>: <a href="https://www.rsyslog.com/doc/v8-stable/concepts/queues.html">Queue configuration</a>.
+  My queue configuration is a file on the disk <code>/var/log/srvrfwd1.00000001</code> it&#8217;s not the fastest,
+  there&#8217;s in-memory configuration&nbsp;available.</li>
+</ul>
+<h2><em>Bonus</em> Nginx&nbsp;configuration</h2>
+<p>In your site configuration you just have to set the right&nbsp;configuration.</p>
+<div class="highlight"><pre><span></span><code>$ cat /etc/nginx/site-enable/default <span class="p">|</span> grep log
+access_log syslog:server<span class="o">=</span>unix:/dev/log,facility<span class="o">=</span>local7,tag<span class="o">=</span>&lt;TAG_NAME&gt;,severity<span class="o">=</span>info<span class="p">;</span>
+error_log  syslog:server<span class="o">=</span>unix:/dev/log,facility<span class="o">=</span>local7,tag<span class="o">=</span>&lt;TAG_NAME&gt;,severity<span class="o">=</span>info<span class="p">;</span>
+</code></pre></div>
+
+
+<p>Remember the module <code>imuxsock</code> ? Well here we are using it, forwarding our log directly to <code>syslogd</code> socket.</p>
+<p><strong>Note</strong>: In this configuration tag-name would end up being the filename for the log files.
+<code>&lt;TAG_NAME&gt; = %programname%</code>, if you want to change that, you would have to modify the template <code>DynNginxFile</code>.</p>
+<h1>Done</h1>
+<p>You should be able to see your log file on the remote server. After a restart of rsyslog.
+You can verify the configuration file with <code>sudo rsyslogd -N 1 -f /etc/rsyslog.conf</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">lumy</span><span class="err">@</span><span class="n">server</span><span class="p">:</span><span class="o">~$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/&lt;</span><span class="n">hostname</span><span class="o">&gt;/</span><span class="w"></span>
+<span class="n">auth</span><span class="o">.</span><span class="n">log</span><span class="w">  </span><span class="n">authpriv</span><span class="o">.</span><span class="n">log</span><span class="w">  </span><span class="n">cron</span><span class="o">.</span><span class="n">log</span><span class="w">  </span><span class="n">nginx</span><span class="o">-&lt;</span><span class="n">tag_name</span><span class="o">&gt;.</span><span class="n">log</span><span class="w"></span>
+</code></pre></div>
+
+
+<p>Now you can automate this process with something like <a href="https://cinc.sh">cinc</a>/<a href="https://www.chef.io">chef</a> or&nbsp;ansible.</p>
+<p>All documentations for <a href="https://www.rsyslog.com/doc/master/">rsyslog can be found on the official&nbsp;website</a></p>
+    </article>
+
+        <div class="tags">
+            <p>tags: <a href="https://blog.lumy.me/tag/software.html">software</a>, <a href="https://blog.lumy.me/tag/web.html">web</a>, <a href="https://blog.lumy.me/tag/log.html">log</a></p>
+        </div>
+
+    <hr>
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                            <li>
+                                <a href="https://twitter.com/Lumy4242">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/lumy">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://soundcloud.com/lumyi">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-music fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mailto:contact@lumy.me">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.lumy.me">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-home fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://cv.lumy.me/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-id-card fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://blog.lta.io/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://blog.rohja.com/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+<p class="copyright text-muted">
+    Blog powered by <a href="http://getpelican.com">Pelican</a>,
+    which takes great advantage of <a href="http://python.org">Python</a>. <br />        &copy;  lumy
+</p>                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/theme/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/theme/js/bootstrap.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="/theme/js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
